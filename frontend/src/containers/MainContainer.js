@@ -52,10 +52,11 @@ class MainContainer extends Component{
       <Header/>
       <Switch>
       <Route exact path="/userProfiles"
-      render={{props} => {
+      render={(props) => {
         return <UserProfileList
         userProfiles={this.state.userProfiles}/>
       }}/>
+      
       <Route exact path="/userProfiles/:id" render={(props) => {
         const id = props.match.params.id;
         const userProfile = this.findUserProfileById(id);

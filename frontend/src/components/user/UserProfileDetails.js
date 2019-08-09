@@ -13,8 +13,8 @@ const UserProfileDetails = (props) => {
     props.onDelete(props.userProfile.id)
   }
 
-  const routes = props.userProfile.routes.map((route, index) => {
-    return <li key={index}>{route.location}</li>
+  const route = props.userProfile.route.map((routes, index) => {
+    return <li key={index}>{routes.name}</li>
   })
 
   const editUrl = "/userProfiles/edit/"+props.userProfile.id
@@ -22,14 +22,14 @@ const UserProfileDetails = (props) => {
   return (
     <div className="component">
     <UserProfile userProfile={props.userProfile}/>
-    <p>Routes:</p>
+    <p>Route:</p>
     <ul>
-    {routes}
+    {route}
     </ul>
     <button onClick={handleDelete}>Delete
     {props.userProfile.firstName}</button>
     <Link to={editUrl}>
-    <button type="button">Edit {props.userProfile.firstName}
+    <button type="button">Edit {props.userProfile.name}
     </button>
     </Link>
     </div>

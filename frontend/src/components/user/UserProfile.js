@@ -10,11 +10,10 @@ const url= "/userProfiles/" +userProfile.id;
 
   return (
     <Fragment>
-    <Link to={url} className="name">{userProfile.firstName}
-     {userProfile.lastName}</Link>
+    <Link to={url} className="name">{userProfile.name}</Link>
 
-    <p>favourites: {userProfile.favourites}</p>
-    <p>Routes: {userProfile.route.name}</p>
+    <p>favourites: {userProfile.location.name}</p>
+    <p>Route: {userProfile.routes.name}</p>
     </Fragment>
   )
 }

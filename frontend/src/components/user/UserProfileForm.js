@@ -2,8 +2,8 @@ import React from 'react';
 
 const UserProfileForm = (props) => {
 
-  const options = props.locations.map((favourites, index) => {
-    return <option key={index} value={favourites._links.self.href}>{favourites.name}</option>
+  const options = props.favourites.map((location, index) => {
+    return <option key={index} value={location._links.self.href}>{location.name}</option>
   })
 
   const handleSubmit = (event) => {

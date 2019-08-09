@@ -4,6 +4,8 @@ import Header from '../Header.js';
 import UserProfileList from '../components/user/UserProfileList';
 import UserProfileDetails from '../components/user/UserProfileDetails';
 import Request from '../helpers/request';
+import UserProfileFormContainer from './users/UserProfileFormContainer';
+import UserProfileEditFormContainer from './users/UserProfileEditFormContainer'
 
 
 
@@ -12,14 +14,14 @@ class MainContainer extends Component{
     super(props);
     this.state = {
       userProfile:[],
-      route:[],
-      admin:[]
+      favourites:[],
+      route:[]
     }
     componentDidMount(){
       const request = new Request()
       const promise1 = request.get('/api/userProfile');
-      const promise2 = request.get('/api/route');
-      const promise3 = request.get('/api/admin');
+      const promise2 = request.get('/api/favourites');
+      const promise3 = request.get('/api/route');
       const promises = [promise1, promise2, promise3]
 
       Promise.all(promise).then((data) => {
@@ -56,7 +58,18 @@ class MainContainer extends Component{
         return <UserProfileList
         userProfiles={this.state.userProfiles}/>
       }}/>
-      
+
+      <Route exact path="/userProfile/new" render={(props) => {
+        return <UserProfileFormContainer favourites={this.state.favourites}/>
+      }}/>
+
+      <Route exact path="/userProfiles/edit/:id" render={(props) => {
+        const id= props.match.params.id;
+        const userProfile= this.findUserProfileById(id);
+        return <UserProfileEditFormContainer userProfile={userProfile}
+        favourites={this.state.favourites} route={this.state.route}/>
+      }}/>
+
       <Route exact path="/userProfiles/:id" render={(props) => {
         const id = props.match.params.id;
         const userProfile = this.findUserProfileById(id);

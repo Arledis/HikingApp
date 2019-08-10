@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 
 class AdminContainer extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
 
-    }
+  render(){
+    return(
+      <h1>I am admin</h1>
+    )
   }
+
 }
 
 

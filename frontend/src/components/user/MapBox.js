@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import './MapBox.css'
 
 //
 
@@ -14,7 +15,7 @@ class MapBox extends Component {
     render() {
       const position = [this.state.lat, this.state.lng]
       return (
-        <Map center={position} zoom={this.state.zoom}>
+        <Map center={position} zoom={this.state.zoom} id="map-box">
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png"

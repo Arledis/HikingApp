@@ -11,8 +11,6 @@ class App extends Component {
    return (
      <div>
      <Router>
-     <Link to="/map">Map</Link>
-     <Link to="/admin">Admin</Link>
       <Switch>
           <Route exact path="/map" render={() =>{
             return <MainContainer />
@@ -20,6 +18,10 @@ class App extends Component {
           <Route exact path="/admin" render={() =>{
             return <AdminContainer />
           }} />
+            <>
+            <Link to="/map">Map</Link>
+            <Link to="/admin">Admin</Link>
+            </>
       </Switch>
      </Router>
      </div>

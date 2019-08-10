@@ -1,6 +1,9 @@
 import React, {Fragment}  from 'react';
 
-class UserProfile {
+const UserProfile = () => {
+  return (
+    <h2>I am user profile</h2>
+  )
 }
 
 export default UserProfile;

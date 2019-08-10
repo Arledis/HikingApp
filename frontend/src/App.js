@@ -31,7 +31,7 @@ class App extends Component {
      <Router>
       <Switch>
           <Route exact path="/map" render={() =>{
-            return <MainContainer />
+            return <MainContainer user={ this.state.users[0] }/>
           }} />
           <Route exact path="/admin" render={() =>{
             return <AdminContainer />

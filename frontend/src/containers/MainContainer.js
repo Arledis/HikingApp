@@ -32,7 +32,7 @@ constructor(props) {
   render(){
     return(
       <div id="main-container">
-        <SideBar view={this.state.sidebarView} setView={this.setView}/>
+        <SideBar view={this.state.sidebarView} setView={this.setView} user={this.props.user}/>
         <MapBox />
       </div>
     )

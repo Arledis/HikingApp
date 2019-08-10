@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
+//
 
 class MapBox extends Component {
 
@@ -25,7 +26,6 @@ class MapBox extends Component {
           </Marker>
         </Map>
         /* <GeoJSON key={keyFunction(this.props.map.data.json)} data={this.props.map.data.json} /> */
-
       )
     }
 }

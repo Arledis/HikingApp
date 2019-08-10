@@ -1,4 +1,5 @@
 class Request {
+
   get(url) {
     return fetch(url)
     .then((res) => res.json());
@@ -10,6 +11,7 @@ class Request {
       headers: {'Content-Type':'application/json'}
     })
   }
+
   post(url, payload){
     return fetch(url, {
       method: "POST",
@@ -17,6 +19,7 @@ class Request {
       body:JSON.stringify(payload)
     })
   }
+
   patch(url, payload){
     return fetch(url, {
       method: "PATCH",

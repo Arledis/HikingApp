@@ -3,7 +3,6 @@ import { Map, TileLayer, Marker, GeoJSON, Popup } from 'react-leaflet';
 import Request from '../../helpers/request'
 import './MapBox.css'
 
-//
 
 class MapBox extends Component {
 

@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
-import MainContainer from './containers/MainContainer'
+import MainContainer from './containers/MainContainer';
+import MapBox from './components/user/MapBox';
+
+
 
 
 class App extends Component {
@@ -8,6 +11,7 @@ class App extends Component {
    return (
      <div>
      <MainContainer />
+     <MapBox />
      </div>
    );
  }

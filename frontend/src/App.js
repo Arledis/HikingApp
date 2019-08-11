@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import MainContainer from './containers/MainContainer';
 import AdminContainer from './containers/AdminContainer';
 import Request from './helpers/request';
+import HomePage from './components/home/HomePage.js';
 
 
 
@@ -38,8 +39,15 @@ class App extends Component {
  render() {
    return (
      <div>
+
      <Router>
+
+
       <Switch>
+      <Route exact path="/" render={ () => {
+        return <HomePage />
+      }} />
+
           <Route exact path="/map" render={() =>{
             return <MainContainer user={ this.state.users[0] } updateUsersFavourites={this.updateUsersFavourites}/>
           }} />
@@ -52,6 +60,7 @@ class App extends Component {
             </>
       </Switch>
      </Router>
+
      </div>
    );
  }

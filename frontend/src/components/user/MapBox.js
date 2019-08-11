@@ -12,9 +12,9 @@ class MapBox extends Component {
     super(props)
     this.state = {
       settings: {
-        lat: 56.30,
-        lng: -4.00,
-        zoom: 6,
+        lat: 57.00,
+        lng: -6.00,
+        zoom: 7
       },
       trail: null,
       locations: {},
@@ -75,7 +75,7 @@ class MapBox extends Component {
         for(let location of this.state.locations[type]) {
           layerGroup.push(
             <Marker position={location.coordinates} key={location.id}>
-              <Popup>"This is {location.name}"</Popup>
+            <Popup>"This is {location.name}"</Popup>
             </Marker>
           )
         }
@@ -108,7 +108,7 @@ class MapBox extends Component {
     this.setState(newState)
   }
 
-// Display point on mouseover
+  // Display point on mouseover
   // handleMarkerMouseOver(event) {
   //   event.target.options.radius = 10;
   //   event.target.options.opacity = 1;
@@ -119,15 +119,15 @@ class MapBox extends Component {
   createPoints() {
     let layerGroup = []
     if(this.state.trailPoints) {
-    for(let point of this.state.trailPoints.features) {
-      let coords = [point.geometry.coordinates[1], point.geometry.coordinates[0]]
-      layerGroup.push(
-        <CircleMarker key={coords} center={coords} radius={0} opacity={0} onClick={(event) => this.handleMarkerClick(event, this.props.getCoords)} onMouseOver={this.handleMarkerMouseOver}/>
-      )
+      for(let point of this.state.trailPoints.features) {
+        let coords = [point.geometry.coordinates[1], point.geometry.coordinates[0]]
+        layerGroup.push(
+          <CircleMarker key={coords} center={coords} radius={0} opacity={0} onClick={(event) => this.handleMarkerClick(event, this.props.getCoords)} onMouseOver={this.handleMarkerMouseOver}/>
+        )
+      }
     }
-  }
-  return layerGroup
-  // Decide if layer group or geoJSON works better
+    return layerGroup
+    // Decide if layer group or geoJSON works better
     // return <GeoJSON data={this.state.trailPoints} />
   }
 
@@ -145,12 +145,12 @@ class MapBox extends Component {
     const position = [this.state.settings.lat, this.state.settings.lng]
 
     return (
-<>
+      <>
       <SideBar
-        view={this.props.view}
-        setView={this.props.setView}
-        user={this.props.user}
-        createNewRoute={this.props.createNewRoute}/>
+      view={this.props.view}
+      setView={this.props.setView}
+      user={this.props.user}
+      createNewRoute={this.props.createNewRoute}/>
 
       <Map center={position} zoom={this.state.settings.zoom} id="map-box" zoomControl={false}>
       <ZoomControl position={"topright"} />
@@ -162,7 +162,7 @@ class MapBox extends Component {
       {this.showLocations("accommodation")}
       {this.createPoints()}
       </Map>
-</>
+      </>
     )
   }
 }

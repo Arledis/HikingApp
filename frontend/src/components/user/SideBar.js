@@ -18,10 +18,12 @@ const SideBar = ({view, setView, user, createNewRoute}) => {
 
   return(
     <div id="side-bar">
-      <h1>I AM LOGO!</h1>
-      <button onClick={handleSetView} value="profile">Profile</button>
-      <button onClick={handleSetView} value="routes">Routes</button>
-      <button onClick={handleSetView} value="favourites">Favourites</button>
+      <h1 id="header">HikeBuddy</h1>
+      <div id="sidebar-nav">
+        <button class="sidebar-button" onClick={handleSetView} value="profile">Profile</button>
+        <button class="sidebar-button" onClick={handleSetView} value="routes">Routes</button>
+        <button class="sidebar-button" onClick={handleSetView} value="favourites">Favourites</button>
+      </div>
       {getView()}
     </div>
   )

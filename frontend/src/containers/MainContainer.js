@@ -54,13 +54,12 @@ constructor(props) {
   render(){
     return(
       <div id="main-container">
-        <SideBar
-          view={this.state.sidebarView}
-          setView={this.setView}
-          user={this.props.user}
-          createNewRoute={this.createNewRoute}/>
         <MapBox
-          getCoords={this.getCoords}/>
+          getCoords={this.getCoords}
+            view={this.state.sidebarView}
+            setView={this.setView}
+            user={this.props.user}
+            createNewRoute={this.createNewRoute}/>
       </div>
     )
   }

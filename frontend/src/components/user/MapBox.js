@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Map, TileLayer, Marker, CircleMarker, GeoJSON, Popup } from 'react-leaflet';
+import { Map, TileLayer, Marker, CircleMarker, GeoJSON, Popup, ZoomControl   } from 'react-leaflet';
 import Request from '../../helpers/request'
 import './MapBox.css'
+import './SideBar.css'
+import SideBar from './SideBar'
 
 
 class MapBox extends Component {
@@ -143,7 +145,15 @@ class MapBox extends Component {
     const position = [this.state.settings.lat, this.state.settings.lng]
 
     return (
-      <Map center={position} zoom={this.state.settings.zoom} id="map-box">
+<>
+      <SideBar
+        view={this.props.view}
+        setView={this.props.setView}
+        user={this.props.user}
+        createNewRoute={this.props.createNewRoute}/>
+
+      <Map center={position} zoom={this.state.settings.zoom} id="map-box" zoomControl={false}>
+      <ZoomControl position={"topright"} />
       <TileLayer
       attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       url="https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png"
@@ -152,7 +162,7 @@ class MapBox extends Component {
       {this.showLocations("accommodation")}
       {this.createPoints()}
       </Map>
-
+</>
     )
   }
 }

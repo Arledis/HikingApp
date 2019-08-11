@@ -13,6 +13,7 @@ class App extends Component {
     this.state = {
       users: []
     }
+    this.updateUsersFavourites = this.updateUsersFavourites.bind(this);
   }
 
   componentDidMount(){
@@ -25,13 +26,22 @@ class App extends Component {
     })
   }
 
+  updateUsersFavourites(location){
+    let newState = Object.assign({}, this.state)
+    newState.users[0].favourites.push(location)
+    this.setState(newState)
+    const request = new Request();
+    request.patch('/api/users/1', {favourites: this.state.users[0].favourites} )
+    }
+
+
  render() {
    return (
      <div>
      <Router>
       <Switch>
           <Route exact path="/map" render={() =>{
-            return <MainContainer user={ this.state.users[0] }/>
+            return <MainContainer user={ this.state.users[0] } updateUsersFavourites={this.updateUsersFavourites}/>
           }} />
           <Route exact path="/admin" render={() =>{
             return <AdminContainer />

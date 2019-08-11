@@ -1,0 +1,21 @@
+#infobox {
+  display: flex;
+  align-items: center;
+  background-color: lightgrey;
+  width: 20vw;
+  height: 20vh;
+  margin: 2vh;
+  padding: 2vh;
+  border-radius: 8px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 10px;
+  color: black;
+}
+
+p {
+  font-size: 7px;
+  color: black;
+}

@@ -1,0 +1,33 @@
+.footer {
+  position: absolute;
+  bottom: zero;
+  background-color: lightgrey;
+  width: 100vw;
+  height: 10vh;
+  margin: 1vh;
+}
+
+h1 {
+  font-size: 10px;
+  color: darkgrey;
+}
+
+p {
+  font-size: 7px;
+  color: darkgrey;
+}
+
+#footer-address {
+  display: flex;
+  align-items: left;
+}
+
+#footer-back-to-top {
+  display: flex;
+  align-items: center;
+}
+
+#footer-snt-link {
+  display: flex;
+  align-items: right;
+}

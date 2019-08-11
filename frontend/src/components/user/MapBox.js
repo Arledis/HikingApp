@@ -24,7 +24,6 @@ class MapBox extends Component {
       },
       trailPoints: null
     }
-    // this.getCoords = this.getCoords.bind(this)
   }
 
   fetchTrail() {
@@ -150,7 +149,9 @@ class MapBox extends Component {
       view={this.props.view}
       setView={this.props.setView}
       user={this.props.user}
-      createNewRoute={this.props.createNewRoute}/>
+      createNewRoute={this.props.createNewRoute}
+      newRoute={this.props.newRoute}
+      currentCoords={this.props.currentCoords}/>
 
       <Map center={position} zoom={this.state.settings.zoom} id="map-box" zoomControl={false}>
       <ZoomControl position={"topright"} />

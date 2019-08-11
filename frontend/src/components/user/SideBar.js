@@ -1,12 +1,13 @@
 import React from 'react';
 import UserProfile from './UserProfile'
+import Routes from './Routes'
 import './SideBar.css'
 
-const SideBar = ({view, setView, user}) => {
+const SideBar = ({view, setView, user, createNewRoute}) => {
 
   const getView = () => {
     if(view.profile) { return <UserProfile /> }
-    if(view.routes) { return <h2>I am routes</h2> }
+    if(view.routes) { return <Routes createNewRoute={createNewRoute}/> }
     if(view.favourites) { return <h2>I am favourites</h2> }
   }
 

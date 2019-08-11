@@ -20,9 +20,9 @@ const SideBar = ({view, setView, user, createNewRoute}) => {
     <div id="side-bar">
       <h1 id="header">HikeBuddy</h1>
       <div id="sidebar-nav">
-        <button class="sidebar-button" onClick={handleSetView} value="profile">Profile</button>
-        <button class="sidebar-button" onClick={handleSetView} value="routes">Routes</button>
-        <button class="sidebar-button" onClick={handleSetView} value="favourites">Favourites</button>
+        <button className="sidebar-button" onClick={handleSetView} value="profile">Profile</button>
+        <button className="sidebar-button" onClick={handleSetView} value="routes">Routes</button>
+        <button className="sidebar-button" onClick={handleSetView} value="favourites">Favourites</button>
       </div>
       {getView()}
     </div>

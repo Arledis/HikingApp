@@ -62,21 +62,13 @@ constructor(props) {
       <div id="main-container">
         <MapBox
           getCoords={this.getCoords}
-<<<<<<< HEAD
           view={this.state.sidebarView}
           setView={this.setView}
           user={this.props.user}
           createNewRoute={this.createNewRoute}
           newRoute={this.state.newRoute}
-          currentCoords={this.state.currentCoords}/>
-=======
-            view={this.state.sidebarView}
-            setView={this.setView}
-            user={this.props.user}
-            createNewRoute={this.createNewRoute}
-            updateUser={this.updateUser}
-            />
->>>>>>> f230407674e6d068da8079d76a1a86546a86e13f
+          currentCoords={this.state.currentCoords}
+          updateUser={this.updateUser}/>
       </div>
     )
   }

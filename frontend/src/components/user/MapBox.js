@@ -20,8 +20,13 @@ class MapBox extends Component {
       trail: null,
       locations: {},
       trailPoints: null,
-      routeMarkers: []
+      routeMarkers: {
+        start: null,
+        end: null,
+        geoJson: null
+      }
     }
+    this.setRouteGeoJson = this.setRouteGeoJson.bind(this)
   }
 
   fetchTrail() {
@@ -46,6 +51,11 @@ class MapBox extends Component {
     }
   }
 
+  setRouteGeoJson(geoJson) {
+    let newState = Object.assign({}, this.state)
+    newState.routeMarkers.geoJson = geoJson
+    this.setState(newState)
+  }
 
   fetchLocations() {
     const request = new Request()
@@ -132,10 +142,11 @@ class MapBox extends Component {
     let coords = [event.latlng.lat, event.latlng.lng]
     if(this.props.newRoute.setStart) {
       getCoords(coords, "start")
+      this.addMarker(<Marker position={coords} key={coords}/>, "start")
     } else {
       getCoords(coords, "end")
+      this.addMarker(<Marker position={coords} key={coords}/>, "end")
     }
-    this.addMarker(<Marker position={coords} key={coords}/>)
   }
 
   componentDidMount() {
@@ -143,9 +154,9 @@ class MapBox extends Component {
     this.fetchLocations()
   }
 
-  addMarker(marker) {
+  addMarker(marker, position) {
     let newState = Object.assign({}, this.state)
-    newState.routeMarkers.push(marker)
+    newState.routeMarkers[position] = marker
     this.setState(newState)
   }
 
@@ -164,7 +175,8 @@ class MapBox extends Component {
       setStart={this.props.setStart}
       setEnd={this.props.setEnd}
       newRoute={this.props.newRoute}
-      trail={this.state.trail}/>
+      trail={this.state.trail}
+      setRouteGeoJson={this.setRouteGeoJson}/>
 
       <Map center={position} zoom={this.state.settings.zoom} id="map-box" zoomControl={false}>
       <ZoomControl position={"topright"} />
@@ -175,7 +187,9 @@ class MapBox extends Component {
       {this.showTrail()}
       {this.showLocations("accommodation")}
       {this.createPoints()}
-      {this.state.routeMarkers.map(marker => marker)}
+      {this.state.routeMarkers.start}
+      {this.state.routeMarkers.end}
+      {this.state.routeMarkers.geoJson}
       </Map>
       </>
     )

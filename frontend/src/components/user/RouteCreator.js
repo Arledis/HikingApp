@@ -1,4 +1,5 @@
 import React from 'react'
+import {GeoJSON} from 'react-leaflet'
 import './RouteCreator.css'
 import './SideBar.css'
 import RouteDisplay from './RouteDisplay'
@@ -6,7 +7,7 @@ import ElevationChart from './ElevationChart'
 import turfLength from '@turf/length'
 
 
-const RouteCreator = ({setStart, setEnd, newRoute, trail}) => {
+const RouteCreator = ({setStart, setEnd, newRoute, trail, setRouteGeoJson}) => {
 
   const calculateRouteLength = () => {
     let newLineString = createNewLineString()
@@ -36,6 +37,12 @@ const RouteCreator = ({setStart, setEnd, newRoute, trail}) => {
     return geojson
   }
 
+  const displayRoute= () => {
+    let data = createNewLineString()
+    console.log("i'm doing stuff");
+    setRouteGeoJson(<GeoJSON data={data}/>)
+  }
+
   return(
     <div className="sidebar-component" id="route-creator">
       <form>
@@ -48,13 +55,13 @@ const RouteCreator = ({setStart, setEnd, newRoute, trail}) => {
         <input type="text" onClick={setEnd} value={newRoute.end}></input>
       </div>
       </form>
-      <h2>Length: {prettyLength()}</h2>
+      <h2>Length: <span id="length-display">{prettyLength()}</span></h2>
       <h2>Total Elevation: *Something difficult here!*</h2>
       <h2>Estimated Time: *Something difficult here!*</h2>
       <ElevationChart />
       <RouteDisplay />
       <h2>Length: {prettyLength()}</h2>
-      <button onClick={calculateRouteLength}>Save Route</button>
+      <button onClick={displayRoute}>Save Route</button>
     </div>
   )
 

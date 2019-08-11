@@ -28,3 +28,8 @@ label {
   justify-content: flex-end;
   align-items: center;
 }
+
+#length-display {
+  font-weight: bold;
+  font-size: 1.3rem;
+}

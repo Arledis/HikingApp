@@ -5,7 +5,7 @@ import Favourites from './Favourites'
 import RouteCreator from './RouteCreator'
 import './SideBar.css'
 
-const SideBar = ({view, setView, user, createNewRoute, newRoute, currentCoords, setStart, setEnd, trail}) => {
+const SideBar = ({view, setView, user, createNewRoute, newRoute, currentCoords, setStart, setEnd, trail, setRouteGeoJson}) => {
 
   const getView = () => {
     if(view.profile) {
@@ -30,7 +30,8 @@ const SideBar = ({view, setView, user, createNewRoute, newRoute, currentCoords, 
         currentCoords={currentCoords}
         setStart={setStart}
         setEnd={setEnd}
-        trail={trail}/>
+        trail={trail}
+        setRouteGeoJson={setRouteGeoJson}/>
     )}
   }
 

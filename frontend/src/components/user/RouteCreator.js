@@ -1,33 +1,44 @@
-import React, {Component} from 'react'
+import React from 'react'
 import './RouteCreator.css'
 import './SideBar.css'
 
-class RouteCreator extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      start: null,
-      end: null
-    }
-    this.handleSaveRoute = this.handleSaveRoute.bind(this)
+const RouteCreator = ({setStart, setEnd, newRoute, trail}) => {
+
+  const calculateRouteLength = () => {
+    let newLineString = createNewLineString()
+    console.log(newLineString)
+    // getLength(length)
   }
 
-  handleSaveRoute() {
-console.log("saving");
+  const createNewLineString = () => {
+    let length;
+    let lineString = trail.features[0].geometry.coordinates
+    let start = [newRoute.start[1], newRoute.start[0]]
+    let startIndex = lineString.findIndex(coord => {
+      return (coord[0] === start[0] && coord[1] === start[1])
+    })
+    let end = [newRoute.end[1], newRoute.end[0]]
+    let endIndex = lineString.findIndex(coord => {
+      return (coord[0] === end[0] && coord[1] === end[1])
+    })
+    let newLineString = lineString.slice(startIndex, endIndex)
+    return newLineString
   }
 
-  render() {
-    return(
-      <div className="sidebar-component">
-      <h2>Start: {this.props.currentCoords}</h2>
-      <h2>End: </h2>
+  return(
+    <div className="sidebar-component">
+      <form>
+        <label htmlFor="start">Start</label>
+        <input type="text" onClick={setStart} value={newRoute.start}></input>
+        <label htmlFor="end">End</label>
+        <input type="text" onClick={setEnd} value={newRoute.end}></input>
+      </form>
       <hr />
       <h2>CHART HERE</h2>
       <hr />
-      <button onClick={this.handleSaveRoute}>Save Route</button>
-      </div>
-    )
-  }
+      <button onClick={calculateRouteLength}>Save Route</button>
+    </div>
+  )
 
 
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, TileLayer, Marker, CircleMarker, GeoJSON, Popup, ZoomControl   } from 'react-leaflet';
+import { Map, TileLayer, Marker, CircleMarker, GeoJSON, ZoomControl   } from 'react-leaflet';
 import Request from '../../helpers/request'
 import './MapBox.css'
 import './SideBar.css'
@@ -19,10 +19,6 @@ class MapBox extends Component {
       },
       trail: null,
       locations: {},
-      newRoute: {
-        start: null,
-        end: null
-      },
       trailPoints: null
     }
   }
@@ -132,7 +128,11 @@ class MapBox extends Component {
   }
 
   handleMarkerClick(event, getCoords) {
-    getCoords([event.latlng.lat, event.latlng.lng])
+    if(this.props.newRoute.setStart) {
+      getCoords([event.latlng.lat, event.latlng.lng], "start")
+    } else {
+      getCoords([event.latlng.lat, event.latlng.lng], "end")
+    }
   }
 
   componentDidMount() {
@@ -151,8 +151,11 @@ class MapBox extends Component {
       setView={this.props.setView}
       user={this.props.user}
       createNewRoute={this.props.createNewRoute}
+      currentCoords={this.props.currentCoords}
+      setStart={this.props.setStart}
+      setEnd={this.props.setEnd}
       newRoute={this.props.newRoute}
-      currentCoords={this.props.currentCoords}/>
+      trail={this.state.trail}/>
 
       <Map center={position} zoom={this.state.settings.zoom} id="map-box" zoomControl={false}>
       <ZoomControl position={"topright"} />

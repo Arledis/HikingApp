@@ -15,8 +15,10 @@ constructor(props) {
     },
     newRoute: {
       create: false,
-      start: null,
-      end: null
+      setStart: false,
+      setEnd: false,
+      start: "",
+      end: ""
     },
     currentCoords: null
   }
@@ -24,6 +26,8 @@ constructor(props) {
   this.createNewRoute = this.createNewRoute.bind(this)
   this.getCoords = this.getCoords.bind(this)
   this.updateUser = this.updateUser.bind(this)
+  this.setStart = this.setStart.bind(this)
+  this.setEnd = this.setEnd.bind(this)
 }
 
   setView(view) {
@@ -45,16 +49,30 @@ constructor(props) {
     this.setState(newState)
   }
 
-  getCoords(coords) {
+  getCoords(coords, point) {
     if(this.state.newRoute.create) {
       let newState = Object.assign({}, this.state)
-      newState.currentCoords = coords
+      newState.newRoute[point] = coords
       this.setState(newState)
     }
   }
 
   updateUser(location){
     this.props.updateUsersFavourites(location)
+  }
+
+  setStart() {
+    let newState = Object.assign({}, this.state)
+    newState.newRoute.setStart = true
+    newState.newRoute.setEnd = false
+    this.setState(newState)
+  }
+
+  setEnd() {
+    let newState = Object.assign({}, this.state)
+    newState.newRoute.setStart = false
+    newState.newRoute.setEnd = true
+    this.setState(newState)
   }
 
   render(){
@@ -68,7 +86,9 @@ constructor(props) {
           createNewRoute={this.createNewRoute}
           newRoute={this.state.newRoute}
           currentCoords={this.state.currentCoords}
-          updateUser={this.updateUser}/>
+          updateUser={this.updateUser}
+          setStart={this.setStart}
+          setEnd={this.setEnd}/>
       </div>
     )
   }

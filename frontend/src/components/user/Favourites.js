@@ -3,14 +3,27 @@ import React from 'react';
 const Favourites = ({ favourites }) => {
 
   const getFavourites = favourites.map((favourite, index) => {
-    return <li key={index} value={favourite}>Name: { favourite.name }</li>
+    return(
+      <tr key={index} value={favourite}>
+        <td>{ favourite.name }</td>
+        <td>{ favourite.description }</td>
+        <td>{ favourite.type }</td>
+        <td><button>Remove</button></td>
+      </tr>
+    )
   })
 
 
   return (
-    <div>
-      <h1>{ getFavourites }</h1>
-    </div>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Admin</th>
+      </tr>
+      { getFavourites }
+    </table>
   )
 
 }

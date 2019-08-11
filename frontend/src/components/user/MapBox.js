@@ -19,7 +19,8 @@ class MapBox extends Component {
       },
       trail: null,
       locations: {},
-      trailPoints: null
+      trailPoints: null,
+      routeMarkers: []
     }
   }
 
@@ -128,16 +129,24 @@ class MapBox extends Component {
   }
 
   handleMarkerClick(event, getCoords) {
+    let coords = [event.latlng.lat, event.latlng.lng]
     if(this.props.newRoute.setStart) {
-      getCoords([event.latlng.lat, event.latlng.lng], "start")
+      getCoords(coords, "start")
     } else {
-      getCoords([event.latlng.lat, event.latlng.lng], "end")
+      getCoords(coords, "end")
     }
+    this.addMarker(<Marker position={coords} key={coords}/>)
   }
 
   componentDidMount() {
     this.fetchTrail()
     this.fetchLocations()
+  }
+
+  addMarker(marker) {
+    let newState = Object.assign({}, this.state)
+    newState.routeMarkers.push(marker)
+    this.setState(newState)
   }
 
   render() {
@@ -166,6 +175,7 @@ class MapBox extends Component {
       {this.showTrail()}
       {this.showLocations("accommodation")}
       {this.createPoints()}
+      {this.state.routeMarkers.map(marker => marker)}
       </Map>
       </>
     )

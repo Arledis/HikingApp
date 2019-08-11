@@ -1,6 +1,8 @@
 import React from 'react'
 import './RouteCreator.css'
 import './SideBar.css'
+import RouteDisplay from './RouteDisplay'
+import ElevationChart from './ElevationChart'
 import turfLength from '@turf/length'
 
 
@@ -35,16 +37,22 @@ const RouteCreator = ({setStart, setEnd, newRoute, trail}) => {
   }
 
   return(
-    <div className="sidebar-component">
+    <div className="sidebar-component" id="route-creator">
       <form>
+      <div className="form-section">
         <label htmlFor="start">Start</label>
         <input type="text" onClick={setStart} value={newRoute.start}></input>
+      </div>
+      <div className="form-section">
         <label htmlFor="end">End</label>
         <input type="text" onClick={setEnd} value={newRoute.end}></input>
+      </div>
       </form>
-      <hr />
-      <h2>CHART HERE</h2>
-      <hr />
+      <h2>Length: {prettyLength()}</h2>
+      <h2>Total Elevation: *Something difficult here!*</h2>
+      <h2>Estimated Time: *Something difficult here!*</h2>
+      <ElevationChart />
+      <RouteDisplay />
       <h2>Length: {prettyLength()}</h2>
       <button onClick={calculateRouteLength}>Save Route</button>
     </div>

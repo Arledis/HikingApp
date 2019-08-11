@@ -4,6 +4,7 @@ import Request from '../../helpers/request'
 import './MapBox.css'
 import './SideBar.css'
 import SideBar from './SideBar'
+import LocationPopup from './LocationPopup'
 
 
 class MapBox extends Component {
@@ -75,7 +76,7 @@ class MapBox extends Component {
         for(let location of this.state.locations[type]) {
           layerGroup.push(
             <Marker position={location.coordinates} key={location.id}>
-            <Popup>"This is {location.name}"</Popup>
+            <LocationPopup location={location} saveFavourite={this.props.updateUser} user={this.props.user}></LocationPopup>
             </Marker>
           )
         }

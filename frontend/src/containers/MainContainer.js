@@ -23,6 +23,7 @@ constructor(props) {
   this.setView = this.setView.bind(this)
   this.createNewRoute = this.createNewRoute.bind(this)
   this.getCoords = this.getCoords.bind(this)
+  this.updateUser = this.updateUser.bind(this)
 }
 
   setView(view) {
@@ -51,6 +52,10 @@ constructor(props) {
     }
   }
 
+  updateUser(location){
+    this.props.updateUsersFavourites(location)
+  }
+
   render(){
     return(
       <div id="main-container">
@@ -59,7 +64,9 @@ constructor(props) {
             view={this.state.sidebarView}
             setView={this.setView}
             user={this.props.user}
-            createNewRoute={this.createNewRoute}/>
+            createNewRoute={this.createNewRoute}
+            updateUser={this.updateUser}
+            />
       </div>
     )
   }

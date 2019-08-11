@@ -44,9 +44,11 @@ constructor(props) {
   }
 
   getCoords(coords) {
-    let newState = Object.assign({}, this.state)
-    newState.currentCoords = coords
-    this.setState(newState)
+    if(this.state.newRoute.create) {
+      let newState = Object.assign({}, this.state)
+      newState.currentCoords = coords
+      this.setState(newState)
+    }
   }
 
   render(){

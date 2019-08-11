@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import MapBox from '../components/user/MapBox';
-import SideBar from '../components/user/SideBar';
 import "./MainContainer.css";
 
 
@@ -11,7 +10,8 @@ constructor(props) {
     sidebarView: {
       profile: true,
       routes: false,
-      favourite: false
+      favourite: false,
+      newRoute: false
     },
     newRoute: {
       create: false,
@@ -29,7 +29,8 @@ constructor(props) {
     const allFalse = {
         profile: false,
         routes: false,
-        favourite: false
+        favourite: false,
+        newRoute: false
     }
     let newState = Object.assign({}, this.state)
     newState.sidebarView = allFalse

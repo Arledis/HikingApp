@@ -26,16 +26,22 @@
 }
 
 .sidebar-button {
-  width: 10vw;
+  width: 7.5vw;
+  height: 6vh;
   background-color: green;
   border: none;
   color: white;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  margin-bottom: 2vh;
 }
 
 .sidebar-button:hover {
   background-color: darkgreen;
+}
+
+.sidebar-component {
+  height: 78vh;
+  padding-top: 1vw;
+  border-radius: 0px 0px 8px 8px
 }

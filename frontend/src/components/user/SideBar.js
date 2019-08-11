@@ -2,17 +2,39 @@ import React from 'react';
 import UserProfile from './UserProfile'
 import Routes from './Routes'
 import Favourites from './Favourites'
+import RouteCreator from './RouteCreator'
 import './SideBar.css'
 
 const SideBar = ({view, setView, user, createNewRoute}) => {
 
   const getView = () => {
-    if(view.profile) { return <UserProfile user={user}/> }
-    if(view.routes) { return <Routes routes={user.routes} createNewRoute={createNewRoute}/> }
-    if(view.favourites) { return <Favourites favourites={user.favourites}/> }
+    if(view.profile) {
+      return(
+        <UserProfile
+          user={user}/>
+    )}
+    if(view.routes) {
+      return(
+        <Routes
+          routes={user.routes} />
+    )}
+    if(view.favourites) {
+      return(
+        <Favourites
+        favourites={user.favourites}/>
+    )}
+    if(view.newRoute) {
+      return(
+        <RouteCreator />
+    )}
   }
 
   const handleSetView = (event) => {
+    setView(event.target.value)
+  }
+
+  const createRoute = (event) => {
+    createNewRoute()
     setView(event.target.value)
   }
 
@@ -22,6 +44,7 @@ const SideBar = ({view, setView, user, createNewRoute}) => {
       <div id="sidebar-nav">
         <button className="sidebar-button" onClick={handleSetView} value="profile">Profile</button>
         <button className="sidebar-button" onClick={handleSetView} value="routes">Routes</button>
+        <button className="sidebar-button" onClick={createRoute} value="newRoute">New Route</button>
         <button className="sidebar-button" onClick={handleSetView} value="favourites">Favourites</button>
       </div>
       {getView()}

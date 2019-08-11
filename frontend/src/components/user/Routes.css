@@ -1,0 +1,10 @@
+#route-table {
+  width: 28vw;
+  margin: 1vw 1vw 0vw 1vw;
+  background-color: white;
+}
+
+table, th, td {
+  border: 1px solid black;
+  text-align: center;
+}

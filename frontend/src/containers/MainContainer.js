@@ -67,7 +67,8 @@ constructor(props) {
           user={this.props.user}
           createNewRoute={this.createNewRoute}
           newRoute={this.state.newRoute}
-          currentCoords={this.state.currentCoords}/>
+          currentCoords={this.state.currentCoords}
+          updateUser={this.updateUser}/>
 
       </div>
     )

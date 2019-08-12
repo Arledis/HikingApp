@@ -14,7 +14,7 @@ class App extends Component {
       users: []
     }
     this.updateUsersFavourites = this.updateUsersFavourites.bind(this);
-    this.updateUserRoutes = this.updateUserRoutes.bind(this)
+    this.createNewRoute = this.createNewRoute.bind(this)
   }
 
   componentDidMount(){
@@ -35,12 +35,12 @@ class App extends Component {
     request.patch('/api/users/1', {favourites: this.state.users[0].favourites} )
   }
 
-  updateUserRoutes(route) {
+  createNewRoute(route) {
     let newState = Object.assign({}, this.state)
     newState.users[0].routes.push(route)
     this.setState(newState)
     const request = new Request()
-    request.post('api/routes/1', {routes: this.state.users[0].routes})
+    request.post('api/routes/', route)
   }
 
 
@@ -51,7 +51,7 @@ class App extends Component {
       <Switch>
       <Route exact path="/map" render={() =>{
         return <MainContainer user={ this.state.users[0] } updateUsersFavourites={this.updateUsersFavourites}
-        updateUserRoutes={this.updateUserRoutes}/>
+        createNewRoute={this.createNewRoute}/>
       }} />
       <Route exact path="/admin" render={() =>{
         return <AdminContainer />

@@ -7,7 +7,7 @@ import ElevationChart from './ElevationChart'
 import turfLength from '@turf/length'
 
 
-const RouteCreator = ({setStart, setEnd, newRoute, trail, setRouteGeoJson, updateUserRoutes}) => {
+const RouteCreator = ({setStart, setEnd, newRoute, trail, setRouteGeoJson, createNewRoute}) => {
 
   const calculateRouteLength = () => {
     let newLineString = createNewLineString()
@@ -47,9 +47,10 @@ const RouteCreator = ({setStart, setEnd, newRoute, trail, setRouteGeoJson, updat
     let route = {
       name: "I am a test route",
       start: [1, 1],
-      end: [2, 2]
+      end: [2, 2],
+      user: "http://localhost:8080/api/users/1"
     }
-    updateUserRoutes(route)
+    createNewRoute(route)
   }
 
   return(

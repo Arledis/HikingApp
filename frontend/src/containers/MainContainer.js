@@ -23,7 +23,7 @@ constructor(props) {
     currentCoords: null
   }
   this.setView = this.setView.bind(this)
-  this.createNewRoute = this.createNewRoute.bind(this)
+  this.setNewRoute = this.setNewRoute.bind(this)
   this.getCoords = this.getCoords.bind(this)
   this.updateUser = this.updateUser.bind(this)
   this.setStart = this.setStart.bind(this)
@@ -43,7 +43,7 @@ constructor(props) {
     this.setState(newState)
   }
 
-  createNewRoute() {
+  setNewRoute() {
     let newState = Object.assign({} , this.state)
     newState.newRoute.create = true
     this.setState(newState)
@@ -83,13 +83,13 @@ constructor(props) {
           view={this.state.sidebarView}
           setView={this.setView}
           user={this.props.user}
-          createNewRoute={this.createNewRoute}
+          setNewRoute={this.setNewRoute}
           newRoute={this.state.newRoute}
           currentCoords={this.state.currentCoords}
           updateUser={this.updateUser}
           setStart={this.setStart}
           setEnd={this.setEnd}
-          updateUserRoutes={this.props.updateUserRoutes}/>
+          createNewRoute={this.props.createNewRoute}/>
       </div>
     )
   }

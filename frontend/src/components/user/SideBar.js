@@ -6,7 +6,7 @@ import RouteCreator from './RouteCreator'
 import './SideBar.css'
 
 
-const SideBar = ({view, setView, user, createNewRoute, newRoute, currentCoords, setStart, setEnd, trail, setRouteGeoJson, removeUserFavourites, updateUserRoutes}) => {
+const SideBar = ({view, setView, user, createNewRoute, newRoute, currentCoords, setStart, setEnd, trail, setRouteGeoJson, removeUserFavourites, updateUserRoutes, setNewRoute}) => {
 
 
   const getView = () => {

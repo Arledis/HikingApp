@@ -44,12 +44,16 @@ const RouteCreator = ({setStart, setEnd, newRoute, trail, setRouteGeoJson, creat
   }
 
   const handleSaveRoute = () => {
+    let length = calculateRouteLength()
+    let geojson = createNewLineString()
     let route = {
       name: "I am a test route",
-      start: [1, 1],
-      end: [2, 2],
+      completed: false,
+      geoJsonData: geojson.coordinates,
+      length: length,
       user: "http://localhost:8080/api/users/1"
     }
+    console.log(route)
     createNewRoute(route)
   }
 

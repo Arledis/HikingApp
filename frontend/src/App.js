@@ -47,39 +47,40 @@ class App extends Component {
   }
 
 
-    removeUserFavourites(location){
-      let newState = Object.assign({}, this.state)
-      let index = newState.users[0].favourites.indexOf(location)
-      newState.users[0].favourites.splice(index, 1)
-      this.setState(newState)
-      const request = new Request();
-      request.patch('/api/users/1', {favourites: this.state.users[0].favourites} )
-    }
+  removeUserFavourites(location){
+    let newState = Object.assign({}, this.state)
+    let index = newState.users[0].favourites.indexOf(location)
+    newState.users[0].favourites.splice(index, 1)
+    this.setState(newState)
+    const request = new Request();
+    request.patch('/api/users/1', {favourites: this.state.users[0].favourites} )
+  }
 
- render() {
-   return (
-     <div>
-     <Router>
+  render() {
+    return (
+      <div>
+      <Router>
       <Switch>
-          <Route exact path="/map" render={() =>{
-            return <MainContainer user={ this.state.users[0] } updateUsersFavourites={this.updateUsersFavourites}
-            removeUserFavourites={this.removeUserFavourites} updateUserRoutes={this.updateUserRoutes}/>
+      <Route exact path="/map" render={() =>{
+        return <MainContainer user={ this.state.users[0] } updateUsersFavourites={this.updateUsersFavourites}
+        removeUserFavourites={this.removeUserFavourites} updateUserRoutes={this.updateUserRoutes}
+        createNewRoute={this.createNewRoute}/>
 
-          }} />
-          <Route exact path="/admin" render={() =>{
-            return <AdminContainer />
-          }} />
-            <>
-            <Link to="/map">Map</Link>
-            <Link to="/admin">Admin</Link>
-            </>
+      }} />
+      <Route exact path="/admin" render={() =>{
+        return <AdminContainer />
+      }} />
+      <>
+      <Link to="/map">Map</Link>
+      <Link to="/admin">Admin</Link>
+      </>
 
       </Switch>
-     </Router>
+      </Router>
 
-     </div>
-   );
- }
+      </div>
+    );
+  }
 }
 
 export default App;

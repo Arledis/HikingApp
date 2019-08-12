@@ -7,7 +7,7 @@ const Routes = ({routes}) => {
     return (
       <tr key={index} value={route}>
         <td>{ route.name }</td>
-        <td><em>XXXX km</em></td>
+        <td>{ route.length.toFixed(2) }km</td>
         <td><input type="checkbox"/></td>
         <td><button>Delete</button></td>
       </tr>
@@ -17,6 +17,7 @@ const Routes = ({routes}) => {
   return(
     <div id="routes" className="sidebar-component">
       <table id="route-table">
+      <tbody>
         <tr>
           <th>Name</th>
           <th>Distance</th>
@@ -24,6 +25,7 @@ const Routes = ({routes}) => {
           <th>Admin</th>
         </tr>
       { getRoutes }
+      </tbody>
       </table>
     </div>
   )

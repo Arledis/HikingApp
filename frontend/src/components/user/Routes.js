@@ -1,15 +1,20 @@
 import React from 'react';
 import './SideBar.css'
 
-const Routes = ({routes}) => {
+const Routes = ({routes, removeUserRoute}) => {
+
+  const handleDeleteRoute = (route) => {
+    console.log(route);
+    // removeUserRoute(event.target.value)
+  }
 
   const getRoutes = routes.map((route, index) => {
     return (
-      <tr key={index} value={route}>
+      <tr>
         <td>{ route.name }</td>
         <td><em>XXXX km</em></td>
         <td><input type="checkbox"/></td>
-        <td><button>Delete</button></td>
+        <td><button onClick={() => handleDeleteRoute(route)}>Delete</button></td>
       </tr>
     )
   })

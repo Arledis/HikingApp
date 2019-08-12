@@ -16,6 +16,7 @@ class App extends Component {
     this.updateUsersFavourites = this.updateUsersFavourites.bind(this);
     this.removeUserFavourites = this.removeUserFavourites.bind(this);
     this.updateUserRoutes = this.updateUserRoutes.bind(this)
+    this.removeUserRoute = this.removeUserRoute.bind(this)
 
   }
 
@@ -45,6 +46,10 @@ class App extends Component {
     request.post('api/routes/1', {routes: this.state.users[0].routes})
   }
 
+  removeUserRoute(id){
+    console.log(id);
+  }
+
     removeUserFavourites(location){
       let newState = Object.assign({}, this.state)
       let index = newState.users[0].favourites.indexOf(location)
@@ -62,7 +67,7 @@ class App extends Component {
       <Switch>
           <Route exact path="/map" render={() =>{
             return <MainContainer user={ this.state.users[0] } updateUsersFavourites={this.updateUsersFavourites}
-            removeUserFavourites={this.removeUserFavourites} updateUserRoutes={this.updateUserRoutes}/>
+            removeUserFavourites={this.removeUserFavourites} updateUserRoutes={this.updateUserRoutes} removeUserRoute={this.removeUserRoute}/>
           }} />
           <Route exact path="/admin" render={() =>{
             return <AdminContainer />

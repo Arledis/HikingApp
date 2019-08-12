@@ -90,7 +90,8 @@ constructor(props) {
           setStart={this.setStart}
           setEnd={this.setEnd}
           removeUserFavourites={this.props.removeUserFavourites}
-          updateUserRoutes={this.props.updateUserRoutes}/>
+          updateUserRoutes={this.props.updateUserRoutes}
+          removeUserRoute={this.props.removeUserRoute}/>
 
       </div>
     )

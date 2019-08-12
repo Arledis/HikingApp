@@ -1,9 +1,10 @@
 import React from 'react'
 
-const LocationRow = ({location, deleteLocation}) => {
+const LocationRow = ({location, deleteLocation, type}) => {
 
 const handleDelete = (event) => {
-  deleteLocation(event.target.value)
+  console.log(event.target.value)
+  deleteLocation(event.target.value, type)
 }
 
   return (
@@ -12,7 +13,7 @@ const handleDelete = (event) => {
       <td>{ location.description }</td>
       <td>{ location.type }</td>
       <td>{ location.rating }</td>
-      <td><button onClick={handleDelete} value={location}>Delete</button></td>
+      <td><button onClick={handleDelete} value={location.id}>Delete</button></td>
     </tr>
   )
 }

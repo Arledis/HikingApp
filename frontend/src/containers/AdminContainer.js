@@ -15,6 +15,7 @@ class AdminContainer extends Component{
       showModal: false
     }
     this.fetchLocations = this.fetchLocations.bind(this)
+    this.findLocationById = this.findLocationById.bind(this)
     this.deleteLocation = this.deleteLocation.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
   }
@@ -41,11 +42,19 @@ class AdminContainer extends Component{
     })
   }
 
-  deleteLocation(location) {
+  findLocationById(id){
+    const location = this.state.locations.find((location) => {
+      return location.id = parseInt(id)
+    })
+    return location;
+  }
+
+  deleteLocation(location, type) {
     let request = new Request()
-    // let url = "/api/locations/{type}/"
-    console.log(location.id);
-    // request.delete(url)
+    let url = `/api/${type}/${location}`;
+    request.delete(url).then(() => {
+      window.location = '/admin'
+    });
   }
 
   showModal() {

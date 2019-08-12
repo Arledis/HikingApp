@@ -7,14 +7,19 @@ const LocationPopup = ({location, saveFavourite, user}) => {
     saveFavourite(location);
   }
 
-  // const checkFavourites = () => {
-  //   console.log(user.favourites.includes(location));
-  //   return user.favourites.includes(location);
-  // }
+  const locationCheck = () => {
+    if(user) {
+      let names = user.favourites.map(favourite => favourite.name)
+      return names.includes(location.name)
+    }
+  }
 
-    const displayButton = () => {
-        return <button onClick={() => handleSaveLocation(location)} value={location}>Add To Favourites</button>
-      }
+  const displayButton = () => {
+    const userHasFavourite = locationCheck()
+    if(user && !userHasFavourite) {
+    return <button onClick={() => handleSaveLocation(location)} value={location}>Add To Favourites</button>
+}
+  }
 
 
 
@@ -22,10 +27,10 @@ const LocationPopup = ({location, saveFavourite, user}) => {
 
   return(
     <Popup>
-      <h1>{location.name}</h1>
-      <h2>Rating: {location.rating}</h2>
-      <h2>Details: {location.description}</h2>
-      {displayButton()}
+    <h1>{location.name}</h1>
+    <h2>Rating: {location.rating}</h2>
+    <h2>Details: {location.description}</h2>
+    {displayButton()}
     </Popup>
   )
 }

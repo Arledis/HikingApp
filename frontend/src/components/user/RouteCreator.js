@@ -40,7 +40,7 @@ const RouteCreator = ({setStart, setEnd, newRoute, trail, setRouteGeoJson}) => {
   const displayRoute= () => {
     let data = createNewLineString()
     console.log("i'm doing stuff");
-    setRouteGeoJson(<GeoJSON data={data}/>)
+    setRouteGeoJson(<GeoJSON data={data} key={"myRoute"} color={"red"} weight={5}/>)
   }
 
   return(

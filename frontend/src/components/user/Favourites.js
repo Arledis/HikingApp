@@ -8,6 +8,7 @@ const Favourites = ({ favourites }) => {
         <td>{ favourite.name }</td>
         <td>{ favourite.description }</td>
         <td>{ favourite.type }</td>
+        <td>{ favourite.rating }</td>
         <td><button>Remove</button></td>
       </tr>
     )
@@ -18,8 +19,9 @@ const Favourites = ({ favourites }) => {
     <table>
       <tr>
         <th>Name</th>
-        <th>Type</th>
         <th>Description</th>
+        <th>Type</th>
+        <th>Rating</th>
         <th>Admin</th>
       </tr>
       { getFavourites }

@@ -46,7 +46,7 @@ class MapBox extends Component {
       return (
         <GeoJSON
         key={this.state.trail}
-        data={this.state.trail} />
+        data={this.state.trail}/>
       )
     }
   }

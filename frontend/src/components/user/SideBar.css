@@ -9,7 +9,6 @@
   border-radius: 8px;
 }
 
-
 #header {
   height: 10vh;
   background-color: white;
@@ -42,6 +41,23 @@
 
 .sidebar-component {
   height: 78vh;
-  padding-top: 1vw;
+  padding-top: 1vh;
   border-radius: 0px 0px 8px 8px
+}
+
+table {
+  font-size: 0.8rem;
+  width: 28vw;
+  margin: 1vw 1vw 0vw 1vw;
+  background-color: white;
+}
+
+table, th, td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+th {
+  font-size: 1rem;
+  padding: 1vh;
 }

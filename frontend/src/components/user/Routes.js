@@ -1,5 +1,4 @@
 import React from 'react';
-import './Routes.css'
 import './SideBar.css'
 
 const Routes = ({routes}) => {

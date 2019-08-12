@@ -1,33 +1,69 @@
-import React, {Component} from 'react'
+import React from 'react'
+import {GeoJSON} from 'react-leaflet'
 import './RouteCreator.css'
 import './SideBar.css'
+import RouteDisplay from './RouteDisplay'
+import ElevationChart from './ElevationChart'
+import turfLength from '@turf/length'
 
-class RouteCreator extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      start: null,
-      end: null
+
+const RouteCreator = ({setStart, setEnd, newRoute, trail, setRouteGeoJson}) => {
+
+  const calculateRouteLength = () => {
+    let newLineString = createNewLineString()
+    let length = turfLength(newLineString)
+    return length
+  }
+
+  const prettyLength = () => (
+    (newRoute.start && newRoute.end) ? `${calculateRouteLength().toFixed(2)}km` : "0km"
+  )
+
+  const createNewLineString = () => {
+    let fullTrail = trail.features[0].geometry.coordinates
+    let startPoint = [newRoute.start[1], newRoute.start[0]]
+    let startIndex = fullTrail.findIndex(coord => {
+      return (coord[0] === startPoint[0] && coord[1] === startPoint[1])
+    })
+    let endPoint = [newRoute.end[1], newRoute.end[0]]
+    let endIndex = fullTrail.findIndex(coord => {
+      return (coord[0] === endPoint[0] && coord[1] === endPoint[1])
+    })
+    let coordinates = fullTrail.slice(startIndex, endIndex)
+    let geojson = {
+      type: "LineString",
+      coordinates: coordinates
     }
-    this.handleSaveRoute = this.handleSaveRoute.bind(this)
+    return geojson
   }
 
-  handleSaveRoute() {
-console.log("saving");
+  const displayRoute= () => {
+    let data = createNewLineString()
+    console.log("i'm doing stuff");
+    setRouteGeoJson(<GeoJSON data={data} key={"myRoute"} color={"red"} weight={5}/>)
   }
 
-  render() {
-    return(
-      <div className="sidebar-component">
-      <h2>Start: {this.props.currentCoords}</h2>
-      <h2>End: </h2>
-      <hr />
-      <h2>CHART HERE</h2>
-      <hr />
-      <button onClick={this.handleSaveRoute}>Save Route</button>
+  return(
+    <div className="sidebar-component" id="route-creator">
+      <form>
+      <div className="form-section">
+        <label htmlFor="start">Start</label>
+        <input type="text" onClick={setStart} value={newRoute.start}></input>
       </div>
-    )
-  }
+      <div className="form-section">
+        <label htmlFor="end">End</label>
+        <input type="text" onClick={setEnd} value={newRoute.end}></input>
+      </div>
+      </form>
+      <h2>Length: <span id="length-display">{prettyLength()}</span></h2>
+      <h2>Total Elevation: *Something difficult here!*</h2>
+      <h2>Estimated Time: *Something difficult here!*</h2>
+      <ElevationChart />
+      <RouteDisplay />
+      <h2>Length: {prettyLength()}</h2>
+      <button onClick={displayRoute}>Save Route</button>
+    </div>
+  )
 
 
 }

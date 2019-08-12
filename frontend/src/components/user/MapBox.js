@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, TileLayer, Marker, CircleMarker, GeoJSON, Popup, ZoomControl   } from 'react-leaflet';
+import { Map, TileLayer, Marker, CircleMarker, GeoJSON, ZoomControl   } from 'react-leaflet';
 import Request from '../../helpers/request'
 import './MapBox.css'
 import './SideBar.css'
@@ -19,12 +19,14 @@ class MapBox extends Component {
       },
       trail: null,
       locations: {},
-      newRoute: {
+      trailPoints: null,
+      routeMarkers: {
         start: null,
-        end: null
-      },
-      trailPoints: null
+        end: null,
+        geoJson: null
+      }
     }
+    this.setRouteGeoJson = this.setRouteGeoJson.bind(this)
   }
 
   fetchTrail() {
@@ -44,11 +46,16 @@ class MapBox extends Component {
       return (
         <GeoJSON
         key={this.state.trail}
-        data={this.state.trail} />
+        data={this.state.trail}/>
       )
     }
   }
 
+  setRouteGeoJson(geoJson) {
+    let newState = Object.assign({}, this.state)
+    newState.routeMarkers.geoJson = geoJson
+    this.setState(newState)
+  }
 
   fetchLocations() {
     const request = new Request()
@@ -132,12 +139,25 @@ class MapBox extends Component {
   }
 
   handleMarkerClick(event, getCoords) {
-    getCoords([event.latlng.lat, event.latlng.lng])
+    let coords = [event.latlng.lat, event.latlng.lng]
+    if(this.props.newRoute.setStart) {
+      getCoords(coords, "start")
+      this.addMarker(<Marker position={coords} key={coords}/>, "start")
+    } else {
+      getCoords(coords, "end")
+      this.addMarker(<Marker position={coords} key={coords}/>, "end")
+    }
   }
 
   componentDidMount() {
     this.fetchTrail()
     this.fetchLocations()
+  }
+
+  addMarker(marker, position) {
+    let newState = Object.assign({}, this.state)
+    newState.routeMarkers[position] = marker
+    this.setState(newState)
   }
 
   render() {
@@ -151,8 +171,12 @@ class MapBox extends Component {
       setView={this.props.setView}
       user={this.props.user}
       createNewRoute={this.props.createNewRoute}
+      currentCoords={this.props.currentCoords}
+      setStart={this.props.setStart}
+      setEnd={this.props.setEnd}
       newRoute={this.props.newRoute}
-      currentCoords={this.props.currentCoords}/>
+      trail={this.state.trail}
+      setRouteGeoJson={this.setRouteGeoJson}/>
 
       <Map center={position} zoom={this.state.settings.zoom} id="map-box" zoomControl={false}>
       <ZoomControl position={"topright"} />
@@ -163,6 +187,9 @@ class MapBox extends Component {
       {this.showTrail()}
       {this.showLocations("accommodation")}
       {this.createPoints()}
+      {this.state.routeMarkers.start}
+      {this.state.routeMarkers.end}
+      {this.state.routeMarkers.geoJson}
       </Map>
       </>
     )

@@ -1,3 +1,35 @@
 #route-creator {
   background-color: pink;
+  display: flex;
+  flex-direction: column;
+  height: 79vh;
+  padding-top: 1vh;
+}
+
+form {
+  margin: 0 1vw 1vw 1vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-section {
+  width: 100%;
+  display: flex;
+}
+
+input[type="text"] {
+  width: 23vw;
+}
+
+label {
+  width: 4vw;
+  padding-right: 1vw;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#length-display {
+  font-weight: bold;
+  font-size: 1.3rem;
 }

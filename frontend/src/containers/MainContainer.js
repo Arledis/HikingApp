@@ -88,7 +88,8 @@ constructor(props) {
           currentCoords={this.state.currentCoords}
           updateUser={this.updateUser}
           setStart={this.setStart}
-          setEnd={this.setEnd}/>
+          setEnd={this.setEnd}
+          updateUserRoutes={this.props.updateUserRoutes}/>
       </div>
     )
   }

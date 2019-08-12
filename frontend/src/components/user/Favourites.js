@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Favourites = ({ favourites }) => {
-
+  
   const getFavourites = favourites.map((favourite, index) => {
     return(
       <tr key={index} value={favourite}>

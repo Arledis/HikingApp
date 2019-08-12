@@ -7,7 +7,7 @@ import ElevationChart from './ElevationChart'
 import turfLength from '@turf/length'
 
 
-const RouteCreator = ({setStart, setEnd, newRoute, trail, setRouteGeoJson}) => {
+const RouteCreator = ({setStart, setEnd, newRoute, trail, setRouteGeoJson, updateUserRoutes}) => {
 
   const calculateRouteLength = () => {
     let newLineString = createNewLineString()
@@ -43,6 +43,15 @@ const RouteCreator = ({setStart, setEnd, newRoute, trail, setRouteGeoJson}) => {
     setRouteGeoJson(<GeoJSON data={data} key={"myRoute"} color={"red"} weight={5}/>)
   }
 
+  const handleSaveRoute = () => {
+    let route = {
+      name: "I am a test route",
+      start: [1, 1],
+      end: [2, 2]
+    }
+    updateUserRoutes(route)
+  }
+
   return(
     <div className="sidebar-component" id="route-creator">
       <form>
@@ -61,7 +70,7 @@ const RouteCreator = ({setStart, setEnd, newRoute, trail, setRouteGeoJson}) => {
       <ElevationChart />
       <RouteDisplay />
       <h2>Length: {prettyLength()}</h2>
-      <button onClick={displayRoute}>Save Route</button>
+      <button onClick={handleSaveRoute}>Save Route</button>
     </div>
   )
 

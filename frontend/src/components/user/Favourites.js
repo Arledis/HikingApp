@@ -42,6 +42,8 @@ const Favourites = ({ favourites, removeUserFavourites }) => {
     removeUserFavourites(favourite)
   }
 
+const Favourites = ({ favourites }) => {
+
   const getFavourites = favourites.map((favourite, index) => {
     return(
       <tr key={index} value={favourite}>
@@ -53,8 +55,6 @@ const Favourites = ({ favourites, removeUserFavourites }) => {
       </tr>
     )
   })
-
-
 
   return (
     <table>

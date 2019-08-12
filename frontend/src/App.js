@@ -15,6 +15,8 @@ class App extends Component {
     }
     this.updateUsersFavourites = this.updateUsersFavourites.bind(this);
     this.removeUserFavourites = this.removeUserFavourites.bind(this);
+    this.updateUserRoutes = this.updateUserRoutes.bind(this)
+
   }
 
   componentDidMount(){
@@ -33,7 +35,15 @@ class App extends Component {
     this.setState(newState)
     const request = new Request();
     request.patch('/api/users/1', {favourites: this.state.users[0].favourites} )
-    }
+  }
+
+  updateUserRoutes(route) {
+    let newState = Object.assign({}, this.state)
+    newState.users[0].routes.push(route)
+    this.setState(newState)
+    const request = new Request()
+    request.post('api/routes/1', {routes: this.state.users[0].routes})
+  }
 
     removeUserFavourites(location){
       let newState = Object.assign({}, this.state)
@@ -45,14 +55,14 @@ class App extends Component {
     }
 
 
- render() {
-   return (
-     <div>
-     <Router>
+  render() {
+    return (
+      <div>
+      <Router>
       <Switch>
           <Route exact path="/map" render={() =>{
             return <MainContainer user={ this.state.users[0] } updateUsersFavourites={this.updateUsersFavourites}
-            removeUserFavourites={this.removeUserFavourites}/>
+            removeUserFavourites={this.removeUserFavourites} updateUserRoutes={this.updateUserRoutes}/>
           }} />
           <Route exact path="/admin" render={() =>{
             return <AdminContainer />
@@ -62,10 +72,10 @@ class App extends Component {
             <Link to="/admin">Admin</Link>
             </>
       </Switch>
-     </Router>
-     </div>
-   );
- }
+      </Router>
+      </div>
+    );
+  }
 }
 
 export default App;

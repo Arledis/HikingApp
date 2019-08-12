@@ -1,0 +1,11 @@
+#admin-container {
+  height: 100vh;
+  width: 100vw;
+  background-color: lightblue;
+}
+
+#admin-header {
+  color: white;
+  background-color: blue;
+  height: 10vh;
+}

@@ -170,7 +170,7 @@ class MapBox extends Component {
       view={this.props.view}
       setView={this.props.setView}
       user={this.props.user}
-      createNewRoute={this.props.createNewRoute}
+      setNewRoute={this.props.setNewRoute}
       currentCoords={this.props.currentCoords}
       setStart={this.props.setStart}
       setEnd={this.props.setEnd}

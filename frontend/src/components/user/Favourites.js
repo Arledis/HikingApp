@@ -33,8 +33,6 @@ const Favourites = ({ favourites, removeUserFavourites }) => {
       return "Post Office"
     } else if (favourite.type === "TOILETS"){
       return "Toilets"
-    } else {
-      return null
     }
   }
 
@@ -42,14 +40,12 @@ const Favourites = ({ favourites, removeUserFavourites }) => {
     removeUserFavourites(favourite)
   }
 
-const Favourites = ({ favourites }) => {
-
   const getFavourites = favourites.map((favourite, index) => {
     return(
       <tr key={index} value={favourite}>
         <td>{ favourite.name }</td>
         <td>{ favourite.description }</td>
-        <td>{convertFavouriteTypeNames({ favourite })}</td>
+        <td>{convertFavouriteTypeNames(favourite)}</td>
         <td>{ favourite.rating }</td>
         <td><button onClick={() => handleDelete(favourite)}>Remove</button></td>
       </tr>
@@ -58,6 +54,7 @@ const Favourites = ({ favourites }) => {
 
   return (
     <table>
+    <tbody>
       <tr>
         <th>Name</th>
         <th>Description</th>
@@ -66,6 +63,7 @@ const Favourites = ({ favourites }) => {
         <th>Admin</th>
       </tr>
       { getFavourites }
+      </tbody>
     </table>
   )
 

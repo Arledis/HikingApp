@@ -18,6 +18,7 @@ class AdminContainer extends Component{
     this.findLocationById = this.findLocationById.bind(this)
     this.deleteLocation = this.deleteLocation.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
+    this.handleLocationPost = this.handleLocationPost.bind(this)
   }
 
   componentDidMount() {
@@ -58,7 +59,7 @@ class AdminContainer extends Component{
   }
 
   showModal() {
-    if(this.state.showModal) { return <Modal locationForm={LocationForm} /> }
+    if(this.state.showModal) { return <Modal handleLocationPost={this.handleLocationPost} locationForm={LocationForm} /> }
   }
 
   toggleModal() {
@@ -72,6 +73,14 @@ class AdminContainer extends Component{
     newState.showModal = false
     this.setState(newState)
   }
+
+  handleLocationPost(location, type){
+    debugger;
+    const request = new Request();
+    request.post(`/api/${type}`, location)
+
+  }
+
 
   render(){
     return(

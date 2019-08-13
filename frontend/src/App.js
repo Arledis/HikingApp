@@ -61,6 +61,9 @@ class App extends Component {
      <div>
      <Router>
       <Switch>
+      <Route exact path="/" render={ () => {
+       return <HomePage />
+     }} />
           <Route exact path="/map" render={() =>{
             return <MainContainer user={ this.state.users[0] } updateUsersFavourites={this.updateUsersFavourites}
             removeUserFavourites={this.removeUserFavourites} updateUserRoutes={this.updateUserRoutes}/>

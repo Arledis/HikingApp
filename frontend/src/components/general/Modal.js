@@ -7,7 +7,7 @@ const Modal = (props) => {
     <div id="modal">
       <div id="modal-box">
       <h1>I am inside modal box </h1>
-      <LocationForm />
+      <LocationForm handleLocationPost={props.handleLocationPost}/>
       </div>
     </div>
   )

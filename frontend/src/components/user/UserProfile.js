@@ -14,9 +14,9 @@ const UserProfile = ({ user, locations}) => {
       console.log(locations)
       return (
         <>
-<LocationSuggestion suggestion={locations.accommodation[0]}/>
-<LocationSuggestion suggestion={locations.pointsOfInterest[0]}/>
-<LocationSuggestion suggestion={locations.services[0]}/>
+        <LocationSuggestion suggestion={locations.accommodation[Math.floor(Math.random()*locations.accommodation.length)]}/>
+        <LocationSuggestion suggestion={locations.pointsOfInterest[Math.floor(Math.random()*locations.pointsOfInterest.length)]}/>
+        <LocationSuggestion suggestion={locations.services[Math.floor(Math.random()*locations.services.length)]}/>
        </>
      )
    }

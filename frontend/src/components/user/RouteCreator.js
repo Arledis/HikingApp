@@ -10,12 +10,15 @@ import turfLength from '@turf/length'
 class RouteCreator extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      routeName: null
+    }
     this.calculateRouteLength = this.calculateRouteLength.bind(this)
     this.prettyLength = this.prettyLength.bind(this)
     this.createNewLineString = this.createNewLineString.bind(this)
     this.displayRoute = this.displayRoute.bind(this)
     this.handleSaveRoute = this.handleSaveRoute.bind(this)
+    this.enterRouteName = this.enterRouteName.bind(this)
   }
 
   calculateRouteLength() {
@@ -25,7 +28,7 @@ class RouteCreator extends Component {
   }
 
   prettyLength() {
-     return (this.props.newRoute.start && this.props.newRoute.end) ? `${this.calculateRouteLength().toFixed(2)}km` : "0km"
+    return (this.props.newRoute.start && this.props.newRoute.end) ? `${this.calculateRouteLength().toFixed(2)}km` : "0km"
   }
 
   createNewLineString() {
@@ -46,36 +49,43 @@ class RouteCreator extends Component {
     return geojson
   }
 
-  displayRoute() {
-    let data = this.createNewLineString()
-    console.log("i'm doing stuff");
-    this.setRouteGeoJson(<GeoJSON data={data} key={"myRoute"} color={"red"} weight={5}/>)
+  enterRouteName(event) {
+    this.setState({routeName: event.target.value})
+  }
+
+  displayRoute(geoJsonData) {
+    if(this.props.newRoute.start && this.props.newRoute.end) {
+      this.props.setRouteGeoJson(<GeoJSON data={geoJsonData} key={"myRoute"} color={"red"} weight={5}/>)
+    }
   }
 
   handleSaveRoute() {
     let length = this.calculateRouteLength()
-    let geojson = this.createNewLineString()
+    let geoJsonData = this.createNewLineString()
+    this.displayRoute(geoJsonData)
     let route = {
-      name: "I am a test route",
+      name: this.state.routeName,
       completed: false,
-      geoJsonData: geojson.coordinates,
+      geoJsonData: geoJsonData,
       length: length,
       user: "http://localhost:8080/api/users/1"
     }
+    console.log(route)
     this.props.createNewRoute(route)
   }
 
   render() {
-  return(
-    <div className="sidebar-component" id="route-creator">
+    return(
+      <div className="sidebar-component" id="route-creator">
       <form>
+      <input type="text" placeholder="Enter Route Name" onInput={this.enterRouteName} required/>
       <div className="form-section">
-        <label htmlFor="start">Start</label>
-        <input type="text" onClick={this.props.setStart} value={this.props.newRoute.start}></input>
+      <label htmlFor="start">Start</label>
+      <input type="text" onClick={this.props.setStart} value={this.props.newRoute.start}></input>
       </div>
       <div className="form-section">
-        <label htmlFor="end">End</label>
-        <input type="text" onClick={this.props.setEnd} value={this.props.newRoute.end}></input>
+      <label htmlFor="end">End</label>
+      <input type="text" onClick={this.props.setEnd} value={this.props.newRoute.end}></input>
       </div>
       </form>
       <h2>Length: <span id="length-display">{this.prettyLength()}</span></h2>
@@ -85,9 +95,9 @@ class RouteCreator extends Component {
       <RouteDisplay />
       <h2>Length: {this.prettyLength()}</h2>
       <button onClick={this.handleSaveRoute}>Save Route</button>
-    </div>
-  )
-}
+      </div>
+    )
+  }
 
 }
 

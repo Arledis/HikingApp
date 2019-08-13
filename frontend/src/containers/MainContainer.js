@@ -91,7 +91,9 @@ constructor(props) {
           setEnd={this.setEnd}
           createNewRoute={this.props.createNewRoute}
           removeUserFavourites={this.props.removeUserFavourites}
-          updateUserRoutes={this.props.updateUserRoutes}/>
+          updateUserRoutes={this.props.updateUserRoutes}
+          deleteRoute={this.props.deleteRoute}
+          updateRouteCompletion={this.props.updateRouteCompletion}/>
 
       </div>
     )

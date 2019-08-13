@@ -1,15 +1,33 @@
 import React from 'react';
 import './SideBar.css'
 
-const Routes = ({routes}) => {
+const Routes = ({routes, deleteRoute, updateRouteCompletion}) => {
+
+  const handleDelete = (route) => {
+    deleteRoute(route)
+  }
+
+  const toggleCompleted = (route, event) => {
+    updateRouteCompletion(route)
+
+  }
+
+  const createCheckbox = (route) => {
+    return(
+      <input
+        type="checkbox"
+        checked={route.completed}
+        onChange={() => toggleCompleted(route) }/>
+    )
+  }
 
   const getRoutes = routes.map((route, index) => {
     return (
-      <tr key={index} value={route}>
+      <tr key={index}>
         <td>{ route.name }</td>
         <td>{ route.length.toFixed(2) }km</td>
-        <td><input type="checkbox"/></td>
-        <td><button>Delete</button></td>
+        <td>{ createCheckbox(route) }</td>
+        <td><button onClick={() => handleDelete(route)}>Delete</button></td>
       </tr>
     )
   })

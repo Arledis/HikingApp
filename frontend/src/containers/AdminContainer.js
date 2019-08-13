@@ -8,9 +8,9 @@ class AdminContainer extends Component{
   constructor(props){
     super(props)
     this.state = {
-      accommodation: null,
+      accommodations: null,
       services: null,
-      pointsOfInterest: null,
+      pointOfInterests: null,
       showModal: false,
       modalType: null
     }
@@ -73,12 +73,6 @@ class AdminContainer extends Component{
     let newState = Object.assign({}, this.state)
     newState.showModal = !this.state.showModal
     newState.modalType = type
-    this.setState(newState)
-  }
-
-  untoggleModal(){
-    let newState = Object.assign({}, this.state)
-    newState.showModal = false
     this.setState(newState)
   }
 

@@ -26,7 +26,7 @@ import LargeTextBox from './LargeTextBox'
 
 
         <div class="hero-text">
-          <h1 class="title">Hiking Buddy</h1>
+          <h1 class="title">Hiking Buddy<i class="fas fa-hiking"></i></h1>
           <p class="blurb">Walk the Scottish National Trail, the long distance walking route running the length of Scotland from Kirk Yetholm to Cape Wrath</p>
           <button class="button" onClick={() => handleMapClick()}>Login</button>
           <a href="#about"><button class="button" >About</button></a>

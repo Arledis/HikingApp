@@ -1,7 +1,7 @@
 import React from 'react';
 import LocationSuggestion from './LocationSuggestion'
 import ProgressBar from '../general/ProgressBar'
-
+import './UserProfile.css'
 const UserProfile = ({user, locations}) => {
 
   const getUserName = () => {
@@ -27,9 +27,11 @@ const UserProfile = ({user, locations}) => {
 
   return (
     <div id="user-profile">
-      <h2>Welome back {getUserName()}!</h2>
-      <ProgressBar progress={getDistanceWalked()} total={864.00} />
 
+        <div id="progress-bar-container">
+        <h2>Welome back {getUserName()}!</h2>
+          <ProgressBar progress={getDistanceWalked()} total={864.00} />
+        </div>
       <h2>Have a look to this suggestions!</h2>
       {getLocations()}
     </div>

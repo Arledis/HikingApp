@@ -24,8 +24,13 @@
   justify-content: space-around;
 }
 
+#sidebar-nav {
+  justify-content: space-between;
+  display: flex;
+}
+
 .sidebar-button {
-  width: 7.5vw;
+  width: auto;
   height: 6vh;
   background-color: limegreen;
   border: none;
@@ -33,7 +38,6 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  /* z-index: -1; */
 }
 
 .sidebar-button:hover {

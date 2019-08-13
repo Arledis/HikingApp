@@ -76,7 +76,7 @@ render() {
 
     <div id="form-holder">
 
-    <Map center={this.state.position} zoom={6} id="form-map-box"
+    <Map center={this.state.position} zoom={7} id="form-map-box"
     onClick={this.handleClick}>
     <TileLayer
     attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

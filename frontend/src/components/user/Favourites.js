@@ -8,9 +8,9 @@ const Favourites = ({ favourites, removeUserFavourites }) => {
     } else if (favourite.type === "BANDB"){
       return "B&B"
     } else if (favourite.type === "CAMPSITE"){
-      return "campsite"
+      return "Campsite"
     } else if (favourite.type === "HOSTEL"){
-      return "hostel"
+      return "Hostel"
     } else if (favourite.type === "VIEWPOINT"){
       return "Viewpoint"
     } else if (favourite.type === "MOUNTAIN"){
@@ -24,7 +24,7 @@ const Favourites = ({ favourites, removeUserFavourites }) => {
     } else if (favourite.type === "VILLAGE"){
       return "Village"
     } else if (favourite.type === "PUB"){
-      return "pub"
+      return "Pub"
     } else if (favourite.type === "GROCERY_SHOP"){
       return "Grocery Shop"
     } else if (favourite.type === "BAKERY"){

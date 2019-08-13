@@ -84,10 +84,9 @@ class AdminContainer extends Component{
   }
 
   handleLocationPost(location, type){
-    debugger;
+    const url = `/api/${type}`
     const request = new Request();
-    request.post(`/api/${type}`, location)
-
+    request.post(url, location)
   }
 
 
@@ -98,9 +97,9 @@ class AdminContainer extends Component{
       <h1>Admin Page</h1>
       </div>
 
-      <button onClick={() => this.toggleModal("accommodation")}>Add Accommodation</button>
-      <button onClick={() => this.toggleModal("service")}>Add Service</button>
-      <button onClick={() => this.toggleModal("pointOfInterest")}>Add Point of Interest</button>
+      <button onClick={() => this.toggleModal("accommodations")}>Add Accommodation</button>
+      <button onClick={() => this.toggleModal("services")}>Add Service</button>
+      <button onClick={() => this.toggleModal("pointOfInterests")}>Add Point of Interest</button>
 
       <LocationTable locations={this.state} deleteLocation={this.deleteLocation}/>
       {this.showModal()}

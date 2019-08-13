@@ -7,7 +7,6 @@ const Modal = (props) => {
   return(
     <div id="modal">
       <div id="modal-box">
-      <h1>I am inside modal box </h1>
       <LocationForm
         handleLocationPost={props.handleLocationPost}
         toggleModal={props.toggleModal}

@@ -24,7 +24,7 @@ class LocationForm extends Component {
       "rating": event.target.rating.value,
       "description": event.target.description.value,
       "coordinates": coordinates,
-      "pictureUrl": event.target.pictureUrl.value,
+      "pictureURL": event.target.pictureURL.value,
       "type": event.target.type.value
     }
     this.props.handleLocationPost(location, this.props.type);
@@ -59,7 +59,6 @@ class LocationForm extends Component {
   }
 
   handleClick(event) {
-    console.log(event.latlng)
     let newState = Object.assign({}, this.state)
     newState.currentPosition = event.latlng
     this.setState(newState)
@@ -76,7 +75,6 @@ render() {
     <>
 
     <div id="form-holder">
-    <h1 id="form-header">Create new location</h1>
 
     <Map center={this.state.position} zoom={6} id="form-map-box"
     onClick={this.handleClick}>
@@ -87,18 +85,22 @@ render() {
     <Marker position={this.state.currentPosition} />
     </Map>
 
-    <form onSubmit={this.handleSubmit}>
-    <input type="text" placeholder="Location Name" name="name" required/>
-    <input type="text" placeholder="Description" name="description" required/>
-    <input type="number" min="1" max="5" placeholder="Rating" name="rating" required/>
-    <input type="text" placeholder="Image URL" name="pictureUrl" required/>
-    <p>Coordinates: {this.showCoords()} </p>
+    <form onSubmit={this.handleSubmit} id="admin-form">
+      <i class="fas fa-times" onClick={this.closeModal}></i>
+      <h1 id="form-header">Create New Location</h1>
+      <input type="text" placeholder="Location Name" name="name" required/>
+      <input type="text" placeholder="Description" name="description" required/>
+      <input type="number" min="1" max="5" placeholder="Rating" name="rating" required/>
+    <input type="text" placeholder="Image URL" name="pictureURL" required/>
+    <h2 id="coords-label">Coordinates:</h2>
+<div id="form-coords">
 
-    {this.displaySelect(this.props.type)}
+      <h2>{this.showCoords()}</h2>
+</div>
+      {this.displaySelect(this.props.type)}
 
-    <button type="submit">Save</button>
+      <button type="submit">Save</button>
     </form>
-    <button onClick={this.closeModal}>Close Window</button>
     </div>
 
     </>

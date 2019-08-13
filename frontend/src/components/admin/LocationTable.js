@@ -16,7 +16,7 @@ const LocationTable = ({locations, deleteLocation}) => {
       })
       locations.pointsOfInterest.forEach((pointOfInterest, index) => {
         allLocations.push(
-          <LocationRow location={pointOfInterest} key={`POI${index}`} deleteLocation={deleteLocation} type={"pointOfInterest"}/>)
+          <LocationRow location={pointOfInterest} key={`POI${index}`} deleteLocation={deleteLocation} type={"pointOfInterests"}/>)
       })
     }
     return allLocations;

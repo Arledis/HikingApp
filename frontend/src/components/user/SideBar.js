@@ -56,7 +56,9 @@ const SideBar = ({view, setView, user, locations, createNewRoute, newRoute, curr
 
   return(
     <div id="side-bar">
-      <h1 id="header">HikeBuddy</h1>
+      <div id="header">
+      <h1>HikeBuddy</h1>
+      </div>
       <div id="sidebar-nav">
         <button className="sidebar-button" onClick={handleSetView} value="profile">Profile</button>
         <button className="sidebar-button" onClick={handleSetView} value="routes">Routes</button>

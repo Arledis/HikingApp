@@ -63,7 +63,6 @@ class App extends Component {
     request.post('api/routes/', route)
   }
 
-
   removeUserFavourites(location){
     let newState = Object.assign({}, this.state)
     let index = newState.users[0].favourites.indexOf(location)

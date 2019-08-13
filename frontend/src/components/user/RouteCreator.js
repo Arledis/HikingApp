@@ -70,8 +70,8 @@ class RouteCreator extends Component {
       user: "http://localhost:8080/api/users/1"
     }
     this.props.createNewRoute(route, event)
-    // this.props.resetMarkers()
-    // this.props.resetRouteCreation()
+    this.props.resetMarkers()
+    this.props.resetRouteCreation()
     this.setState({ routeName: null })
     event.target.reset();
   }

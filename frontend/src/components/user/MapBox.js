@@ -45,10 +45,12 @@ class MapBox extends Component {
   displayUserRoutes() {
     if(this.props.user) {
     for(let route of this.props.user.routes) {
+      console.log(route.name);
       return(
         <GeoJSON
         key={route.name}
-        data={route.geoJsonData}/>
+        data={route.geoJsonData}
+        color={"green"}/>
       )
     }
   }
@@ -220,7 +222,7 @@ class MapBox extends Component {
       {this.state.routeMarkers.end}
       {this.state.routeMarkers.geoJson}
 
-      {/* }{this.displayUserRoutes()} */}
+      {this.displayUserRoutes()}
       </Map>
       </>
     )

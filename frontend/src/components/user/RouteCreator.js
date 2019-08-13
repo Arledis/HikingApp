@@ -3,7 +3,6 @@ import {GeoJSON} from 'react-leaflet'
 import './RouteCreator.css'
 import './SideBar.css'
 import RouteDisplay from './RouteDisplay'
-import ElevationChart from './ElevationChart'
 import turfLength from '@turf/length'
 
 
@@ -78,7 +77,7 @@ class RouteCreator extends Component {
     return(
       <div className="sidebar-component" id="route-creator">
       <form>
-      <input type="text" placeholder="Enter Route Name" onInput={this.enterRouteName} required/>
+      <input type="text" placeholder="Enter Route Name" onInput={this.enterRouteName} required id="name-input"/>
       <div className="form-section">
       <label htmlFor="start">Start</label>
       <input type="text" onClick={this.props.setStart} value={this.props.newRoute.start}></input>
@@ -89,12 +88,8 @@ class RouteCreator extends Component {
       </div>
       </form>
       <h2>Length: <span id="length-display">{this.prettyLength()}</span></h2>
-      <h2>Total Elevation: *Something difficult here!*</h2>
-      <h2>Estimated Time: *Something difficult here!*</h2>
-      <ElevationChart />
       <RouteDisplay />
-      <h2>Length: {this.prettyLength()}</h2>
-      <button onClick={this.handleSaveRoute}>Save Route</button>
+      <button onClick={this.handleSaveRoute} id="save-button">Save Route</button>
       </div>
     )
   }

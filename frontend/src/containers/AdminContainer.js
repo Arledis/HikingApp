@@ -85,17 +85,22 @@ class AdminContainer extends Component{
 
   render(){
     return(
-      <div id="admin-container">
-      <div id="admin-header">
-      <h1>Admin Page</h1>
-      </div>
+<>
+<div id="admin-header">
+  <h1 id="admin-title">Admin Page</h1>
+</div>
+  <div id="admin-container">
+
+      <div id="button-holder">
       <button onClick={() => this.toggleModal("accommodations")}>Add Accommodation</button>
       <button onClick={() => this.toggleModal("services")}>Add Service</button>
       <button onClick={() => this.toggleModal("pointOfInterests")}>Add Point of Interest</button>
+</div>
 
       <LocationTable locations={this.state} deleteLocation={this.deleteLocation}/>
       {this.showModal()}
       </div>
+      </>
     )
   }
 

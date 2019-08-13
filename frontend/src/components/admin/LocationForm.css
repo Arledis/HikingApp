@@ -1,11 +1,21 @@
 #form-holder {
   display: flex;
+  flex-direction: column;
   width: 100%;
   justify-content: space-around;
   align-items: center;
+  background-color: lightblue;
+  border: 2px solid black;
+
 }
 
 #form-map-box {
   width: 50vw;
-  height: 40vw;
+  height: 50vh;
+  border: 1px solid black;
+  margin: 2px;
+}
+
+#form-header {
+  font-size: 10px;
 }

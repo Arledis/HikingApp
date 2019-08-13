@@ -23,7 +23,7 @@ const LocationTable = ({locations, deleteLocation}) => {
   }
 
   return(
-    <table>
+    <table id="admin-table">
     <tbody>
     <tr>
     <th>Name</th>

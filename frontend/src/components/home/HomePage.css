@@ -1,0 +1,54 @@
+#home-page {
+  background-image: url('/images/background.jpg');
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height:100vh;
+}
+
+.info-boxes{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img{
+  height: 30vh;
+}
+
+.hero-text{
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+}
+
+.title{
+  font-size: 2.9rem;
+    margin-bottom: 1.5em;
+    font-weight: 900;
+    margin-top: 1em;
+}
+
+.blurb{
+  font-size: 1.4rem;
+    margin-bottom: 1.5em;
+    font-weight: 900;
+    margin-top: 1em;
+}
+
+ .button{
+   display: inline-block;
+       font-size: 1rem;
+       text-decoration: none;
+       border-width: 3px;
+       border-style: solid;
+       padding: 0.2em 2em;
+}
+
+.button:hover{
+  background-color: lightgrey;
+}

@@ -7,8 +7,8 @@ const Footer = () => {
     <div className="footer">
 
     <div id="footer-address">
-    <h1>Contact Information:<h1>
-    <p>Address: DACS.Inc. <br />Code Towers, 123 Made Up Street, Glasgow<p>
+    <h1>Contact Information:</h1>
+    <p>Address: DACS.Inc. Code Towers, 123 Made Up Street, Glasgow</p>
     <p>Email: Dacs@Hotpost.org</p>
     </div>
 

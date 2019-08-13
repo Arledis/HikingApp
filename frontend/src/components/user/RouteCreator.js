@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {GeoJSON} from 'react-leaflet'
 import './RouteCreator.css'
 import './SideBar.css'
@@ -7,25 +7,37 @@ import ElevationChart from './ElevationChart'
 import turfLength from '@turf/length'
 
 
-const RouteCreator = ({setStart, setEnd, newRoute, trail, setRouteGeoJson, updateUserRoutes}) => {
+class RouteCreator extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      routeName: null
+    }
+    this.calculateRouteLength = this.calculateRouteLength.bind(this)
+    this.prettyLength = this.prettyLength.bind(this)
+    this.createNewLineString = this.createNewLineString.bind(this)
+    this.displayRoute = this.displayRoute.bind(this)
+    this.handleSaveRoute = this.handleSaveRoute.bind(this)
+    this.enterRouteName = this.enterRouteName.bind(this)
+  }
 
-  const calculateRouteLength = () => {
-    let newLineString = createNewLineString()
+  calculateRouteLength() {
+    let newLineString = this.createNewLineString()
     let length = turfLength(newLineString)
     return length
   }
 
-  const prettyLength = () => (
-    (newRoute.start && newRoute.end) ? `${calculateRouteLength().toFixed(2)}km` : "0km"
-  )
+  prettyLength() {
+    return (this.props.newRoute.start && this.props.newRoute.end) ? `${this.calculateRouteLength().toFixed(2)}km` : "0km"
+  }
 
-  const createNewLineString = () => {
-    let fullTrail = trail.features[0].geometry.coordinates
-    let startPoint = [newRoute.start[1], newRoute.start[0]]
+  createNewLineString() {
+    let fullTrail = this.props.trail.features[0].geometry.coordinates
+    let startPoint = [this.props.newRoute.start[1], this.props.newRoute.start[0]]
     let startIndex = fullTrail.findIndex(coord => {
       return (coord[0] === startPoint[0] && coord[1] === startPoint[1])
     })
-    let endPoint = [newRoute.end[1], newRoute.end[0]]
+    let endPoint = [this.props.newRoute.end[1], this.props.newRoute.end[0]]
     let endIndex = fullTrail.findIndex(coord => {
       return (coord[0] === endPoint[0] && coord[1] === endPoint[1])
     })
@@ -37,43 +49,57 @@ const RouteCreator = ({setStart, setEnd, newRoute, trail, setRouteGeoJson, updat
     return geojson
   }
 
-  const displayRoute = () => {
-    let data = createNewLineString()
-    setRouteGeoJson(<GeoJSON data={data} key={"myRoute"} color={"red"} weight={5}/>)
+  enterRouteName(event) {
+    this.setState({routeName: event.target.value})
   }
 
-  const handleSaveRoute = () => {
-    let route = {
-      name: "I am a test route",
-      start: [1, 1],
-      end: [2, 2]
+  displayRoute(geoJsonData) {
+    if(this.props.newRoute.start && this.props.newRoute.end) {
+      this.props.setRouteGeoJson(<GeoJSON data={geoJsonData} key={"myRoute"} color={"red"} weight={5}/>)
     }
-    updateUserRoutes(route)
   }
 
-  return(
-    <div className="sidebar-component" id="route-creator">
+  handleSaveRoute() {
+    let length = this.calculateRouteLength()
+    let geoJsonData = this.createNewLineString()
+    this.displayRoute(geoJsonData)
+    let route = {
+      name: this.state.routeName,
+      completed: false,
+      geoJsonData: geoJsonData,
+      length: length,
+      user: "http://localhost:8080/api/users/1"
+    }
+    console.log(route)
+    this.props.createNewRoute(route)
+  }
+
+  render() {
+    return(
+      <div className="sidebar-component" id="route-creator">
       <form>
+      <input type="text" placeholder="Enter Route Name" onInput={this.enterRouteName} required/>
       <div className="form-section">
-        <label htmlFor="start">Start</label>
-        <input type="text" onClick={setStart} value={newRoute.start}></input>
+      <label htmlFor="start">Start</label>
+      <input type="text" onClick={this.props.setStart} value={this.props.newRoute.start}></input>
       </div>
       <div className="form-section">
-        <label htmlFor="end">End</label>
-        <input type="text" onClick={setEnd} value={newRoute.end}></input>
+      <label htmlFor="end">End</label>
+      <input type="text" onClick={this.props.setEnd} value={this.props.newRoute.end}></input>
       </div>
       </form>
-      <h2>Length: <span id="length-display">{prettyLength()}</span></h2>
+      <h2>Length: <span id="length-display">{this.prettyLength()}</span></h2>
       <h2>Total Elevation: *Something difficult here!*</h2>
       <h2>Estimated Time: *Something difficult here!*</h2>
       <ElevationChart />
       <RouteDisplay />
-      <h2>Length: {prettyLength()}</h2>
-      <button onClick={handleSaveRoute}>Save Route</button>
-    </div>
-  )
-
+      <h2>Length: {this.prettyLength()}</h2>
+      <button onClick={this.handleSaveRoute}>Save Route</button>
+      </div>
+    )
+  }
 
 }
+
 
 export default RouteCreator;

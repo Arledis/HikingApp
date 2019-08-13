@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './AdminContainer.css'
 import LocationTable from '../components/admin/LocationTable'
 import Request from '../helpers/request';
-import LocationForm from '../components/admin/LocationForm'
 import Modal from '../components/general/Modal'
 
 class AdminContainer extends Component{

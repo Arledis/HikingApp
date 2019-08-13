@@ -1,16 +1,16 @@
 import React from 'react';
 
-
-
 const LocationForm = ({toggleModal, handleLocationPost, type}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    let coordinates = event.target.coordinates.value.split(",").map(value => parseInt(value))
+    console.log(coordinates);
     const location = {
       "name": event.target.name.value,
       "rating": event.target.rating.value,
       "description": event.target.description.value,
-      "coordinates": [57, -4],
+      "coordinates": coordinates,
       "pictureUrl": event.target.pictureUrl.value,
       "type": event.target.type.value
     }
@@ -55,6 +55,7 @@ const LocationForm = ({toggleModal, handleLocationPost, type}) => {
     <input type="text" placeholder="Description" name="description" required/>
     <input type="number" min="1" max="5" placeholder="Rating" name="rating" required/>
     <input type="text" placeholder="Image URL" name="pictureUrl" required/>
+    <input type="text" placeholder="Coordinates" name="coordinates" required/>
 
     {displaySelect(type)}
 

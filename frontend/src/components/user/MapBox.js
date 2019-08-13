@@ -178,7 +178,8 @@ class MapBox extends Component {
       trail={this.state.trail}
       setRouteGeoJson={this.setRouteGeoJson}
       removeUserFavourites={this.props.removeUserFavourites}
-      updateUserRoutes={this.props.updateUserRoutes}/>
+      updateUserRoutes={this.props.updateUserRoutes}
+      locations={this.state.locations}/>
 
       <Map center={position} zoom={this.state.settings.zoom} id="map-box" zoomControl={false}>
       <ZoomControl position={"topright"} />

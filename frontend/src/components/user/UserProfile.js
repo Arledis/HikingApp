@@ -1,6 +1,7 @@
 import React from 'react';
+import LocationSuggestion from './LocationSuggestion'
 
-const UserProfile = ({ user }) => {
+const UserProfile = ({ user, locations}) => {
 
   const getUserName = () => {
     if(user){
@@ -8,9 +9,39 @@ const UserProfile = ({ user }) => {
     }
   }
 
+// const getLocations = locations.map((locations, index) => {
+//   return (
+//     <tr key={index}>
+//     <td>{locations.name}</td>
+//     </tr>
+//   )
+// })
+
+
+
+//
+
+  const getLocations = () => {
+    if(locations.accommodation) {
+      console.log(locations)
+      return (
+        <>
+<LocationSuggestion suggestion={locations.accommodation[0]}/>
+<LocationSuggestion suggestion={locations.pointsOfInterest[0]}/>
+<LocationSuggestion suggestion={locations.services[0]}/>
+       </>
+     )
+   }
+ }
+  // }
+
+
+
   return (
     <div id="user-profile">
       <h2>Welome back {getUserName()}!</h2>
+      <h2>Have a look to this suggestions!</h2>
+      {getLocations()}
     </div>
   )
 }

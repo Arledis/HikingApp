@@ -9,18 +9,6 @@ const UserProfile = ({ user, locations}) => {
     }
   }
 
-// const getLocations = locations.map((locations, index) => {
-//   return (
-//     <tr key={index}>
-//     <td>{locations.name}</td>
-//     </tr>
-//   )
-// })
-
-
-
-//
-
   const getLocations = () => {
     if(locations.accommodation) {
       console.log(locations)
@@ -33,8 +21,6 @@ const UserProfile = ({ user, locations}) => {
      )
    }
  }
-  // }
-
 
 
   return (

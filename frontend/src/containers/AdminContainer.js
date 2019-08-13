@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './AdminContainer.css'
 import LocationTable from '../components/admin/LocationTable'
 import Request from '../helpers/request';
-import LocationForm from '../components/admin/LocationForm'
 import Modal from '../components/general/Modal'
 
 class AdminContainer extends Component{
@@ -12,7 +11,8 @@ class AdminContainer extends Component{
       accommodation: null,
       services: null,
       pointsOfInterest: null,
-      showModal: false
+      showModal: false,
+      modalType: null
     }
     this.fetchLocations = this.fetchLocations.bind(this)
     this.findLocationById = this.findLocationById.bind(this)
@@ -59,12 +59,20 @@ class AdminContainer extends Component{
   }
 
   showModal() {
-    if(this.state.showModal) { return <Modal handleLocationPost={this.handleLocationPost} locationForm={LocationForm} /> }
+    if(this.state.showModal) {
+      return(
+        <Modal
+          handleLocationPost={this.handleLocationPost}
+          type={this.state.modalType}
+          toggleModal={this.toggleModal}/>
+      )
+    }
   }
 
-  toggleModal() {
+  toggleModal(type) {
     let newState = Object.assign({}, this.state)
-    newState.showModal = true
+    newState.showModal = !this.state.showModal
+    newState.modalType = type
     this.setState(newState)
   }
 
@@ -75,10 +83,9 @@ class AdminContainer extends Component{
   }
 
   handleLocationPost(location, type){
-    debugger;
+    const url = `/api/${type}`
     const request = new Request();
-    request.post(`/api/${type}`, location)
-
+    request.post(url, location)
   }
 
 
@@ -88,8 +95,9 @@ class AdminContainer extends Component{
       <div id="admin-header">
       <h1>Admin Page</h1>
       </div>
-
-      <button onClick={this.toggleModal}>Add Location</button>
+      <button onClick={() => this.toggleModal("accommodations")}>Add Accommodation</button>
+      <button onClick={() => this.toggleModal("services")}>Add Service</button>
+      <button onClick={() => this.toggleModal("pointOfInterests")}>Add Point of Interest</button>
 
       <LocationTable locations={this.state} deleteLocation={this.deleteLocation}/>
       {this.showModal()}

@@ -1,0 +1,11 @@
+#form-holder {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#form-map-box {
+  width: 50vw;
+  height: 40vw;
+}

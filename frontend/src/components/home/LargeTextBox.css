@@ -5,4 +5,24 @@
   margin: 2vh;
   border-radius: 8px;
   text-align: center;
+  display: flex;
+justify-content: space-between;}
+
+.image{
+border-radius: 10px;
+height: 100%;
+
+
+
+}
+
+.paragraph{
+  font-size: 0.8em;
+  color: black;
+  padding: 10px;
+}
+
+.title{
+  font-size: 1em;
+  color: black;
 }

@@ -12,15 +12,15 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      users: []
+      users: [],
+      mapClick: false
     }
     this.updateUsersFavourites = this.updateUsersFavourites.bind(this);
-<<<<<<< HEAD
-=======
+    this.createNewRoute = this.createNewRoute.bind(this)
     this.removeUserFavourites = this.removeUserFavourites.bind(this);
-    this.updateUserRoutes = this.updateUserRoutes.bind(this)
-
->>>>>>> 1ff31206d7855ece7c2b26776c787977fd9f0c12
+    this.deleteRoute = this.deleteRoute.bind(this)
+    this.updateRouteCompletion = this.updateRouteCompletion.bind(this)
+    this.setMapClickToTrue = this.setMapClickToTrue.bind(this)
   }
 
   componentDidMount(){
@@ -33,59 +33,87 @@ class App extends Component {
     })
   }
 
+  updateRouteCompletion(route) {
+    let request = new Request()
+    let url = `/api/routes/${route.id}`;
+    request.patch(url, {completed: (!route.completed)})
+  }
+
+  deleteRoute(route) {
+    let request = new Request()
+    let url = `/api/routes/${route.id}`;
+    let newState = Object.assign({}, this.state)
+    let index = newState.users[0].routes.indexOf(route)
+    newState.users[0].routes.splice(index, 1)
+    this.setState(newState)
+    request.delete(url)
+  }
+
   updateUsersFavourites(location){
     let newState = Object.assign({}, this.state)
     newState.users[0].favourites.push(location)
     this.setState(newState)
     const request = new Request();
     request.patch('/api/users/1', {favourites: this.state.users[0].favourites} )
-    }
+  }
+
+  createNewRoute(route) {
+    let newState = Object.assign({}, this.state)
+    newState.users[0].routes.push(route)
+    this.setState(newState)
+    const request = new Request()
+    request.post('api/routes/', route)
+  }
 
 
-<<<<<<< HEAD
- render() {
-   return (
-     <div>
-=======
-    removeUserFavourites(location){
-      let newState = Object.assign({}, this.state)
-      let index = newState.users[0].favourites.indexOf(location)
-      newState.users[0].favourites.splice(index, 1)
-      this.setState(newState)
-      const request = new Request();
-      request.patch('/api/users/1', {favourites: this.state.users[0].favourites} )
-    }
+  removeUserFavourites(location){
+    let newState = Object.assign({}, this.state)
+    let index = newState.users[0].favourites.indexOf(location)
+    newState.users[0].favourites.splice(index, 1)
+    this.setState(newState)
+    const request = new Request();
+    request.patch('/api/users/1', {favourites: this.state.users[0].favourites} )
+  }
 
->>>>>>> 1ff31206d7855ece7c2b26776c787977fd9f0c12
+  setMapClickToTrue(){
+    let newState = Object.assign({}, this.state)
+    newState.mapClick = true;
+    this.setState(newState)
+    console.log("It clicks");
+  }
 
-     <Router>
-      <Switch>
-<<<<<<< HEAD
-      <Route exact path="/" render={ () => {
-        return <HomePage />
-      }} />
+  render() {
+    return (
+      <div>
 
-          <Route exact path="/map" render={() =>{
-            return <MainContainer user={ this.state.users[0] } updateUsersFavourites={this.updateUsersFavourites}/>
-=======
-          <Route exact path="/map" render={() =>{
-            return <MainContainer user={ this.state.users[0] } updateUsersFavourites={this.updateUsersFavourites}
-            removeUserFavourites={this.removeUserFavourites} updateUserRoutes={this.updateUserRoutes}/>
->>>>>>> 1ff31206d7855ece7c2b26776c787977fd9f0c12
-          }} />
-          <Route exact path="/admin" render={() =>{
-            return <AdminContainer />
-          }} />
-            <>
-            <Link to="/map">Map</Link>
-            <Link to="/admin">Admin</Link>
-            </>
-      </Switch>
-     </Router>
+      <Router>
+           <Switch>
+           <Route exact path="/" render={ () => {
+            return <HomePage clickMap={this.setMapClickToTrue}/>
+            }} />
+               <Route exact path="/map" render={() =>{
+                 if(this.state.mapClick === true){
+                   return <MainContainer
+                 user={this.state.users[0]} updateUsersFavourites={this.updateUsersFavourites}
+                 removeUserFavourites={this.removeUserFavourites} updateUserRoutes={this.updateUserRoutes}
+                 createNewRoute={this.createNewRoute}
+                 deleteRoute={this.deleteRoute}
+                 updateRouteCompletion={this.updateRouteCompletion}/>
+                 }
+               }} />
+               <Route exact path="/admin" render={() =>{
+                 return <AdminContainer />
+               }} />
+                 <>
+                 <Link to="/map">Map</Link>
+                 <Link to="/admin">Admin</Link>
+                 </>
+           </Switch>
+          </Router>
 
-     </div>
-   );
- }
+      </div>
+    );
+  }
 }
 
 export default App;

@@ -17,6 +17,7 @@ class LocationForm extends Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault()
     let coordinates = [this.state.currentPosition.lat, this.state.currentPosition.lng]
     const location = {
       "name": event.target.name.value,
@@ -27,6 +28,7 @@ class LocationForm extends Component {
       "type": event.target.type.value
     }
     this.props.handleLocationPost(location, this.props.type);
+    event.target.reset()
   }
 
   displaySelect(type) {

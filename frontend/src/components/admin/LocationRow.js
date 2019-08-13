@@ -3,7 +3,6 @@ import React from 'react'
 const LocationRow = ({location, deleteLocation, type}) => {
 
 const handleDelete = (event) => {
-  console.log(event.target.value)
   deleteLocation(event.target.value, type)
 }
 

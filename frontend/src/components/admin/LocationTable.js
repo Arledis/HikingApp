@@ -5,16 +5,16 @@ const LocationTable = ({locations, deleteLocation}) => {
 
   const createLocations = () => {
     const allLocations = []
-    if(locations.accommodation) {
+    if(locations.accommodations) {
       locations.services.forEach((service, index) => {
         allLocations.push(
           <LocationRow location={service} key={`service${index}`} deleteLocation={deleteLocation} type={"services"}/>)
       })
-      locations.accommodation.forEach((accommodation, index) => {
+      locations.accommodations.forEach((accommodation, index) => {
         allLocations.push(
           <LocationRow location={accommodation} key={`accommodation${index}`} deleteLocation={deleteLocation} type={"accommodations"}/>)
       })
-      locations.pointsOfInterest.forEach((pointOfInterest, index) => {
+      locations.pointOfInterests.forEach((pointOfInterest, index) => {
         allLocations.push(
           <LocationRow location={pointOfInterest} key={`POI${index}`} deleteLocation={deleteLocation} type={"pointOfInterests"}/>)
       })

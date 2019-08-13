@@ -43,25 +43,42 @@ class MapBox extends Component {
   }
 
   displayUserRoutes() {
+    let userRoutes = []
     if(this.props.user) {
-    for(let route of this.props.user.routes) {
-      console.log(route.name);
-      return(
-        <GeoJSON
-        key={route.name}
-        data={route.geoJsonData}
-        color={"green"}/>
-      )
+      for(let route of this.props.user.routes) {
+        let data = { type: "LineString", coordinates: route.geoJsonData }
+        userRoutes.push(
+          <GeoJSON
+          key={route.name}
+          data={data}
+          weight={5}
+          color={route.completed ? "green" : "red"}/>
+        )
+        userRoutes.push(
+          <GeoJSON
+          key={route.name}
+          data={data}
+          weight={1}
+          color={"white"}/>
+        )
+      }
     }
-  }
+    return userRoutes
   }
 
   showTrail() {
     if(this.state.trail) {
-      return (
+      return ([
         <GeoJSON
-        key={this.state.trail}
-        data={this.state.trail}/>
+          key={"outline"}
+          data={this.state.trail}
+          weight={5}/>,
+        <GeoJSON
+          key={"inline"}
+          data={this.state.trail}
+          weight={1}
+          color={"white"}/>
+      ]
       )
     }
   }
@@ -151,7 +168,7 @@ class MapBox extends Component {
       for(let point of this.state.trailPoints.features) {
         let coords = [point.geometry.coordinates[1], point.geometry.coordinates[0]]
         layerGroup.push(
-          <CircleMarker key={coords} center={coords} radius={0} opacity={0} onClick={(event) => this.handleMarkerClick(event, this.props.getCoords)} onMouseOver={this.handleMarkerMouseOver}/>
+          <CircleMarker key={coords} center={coords} radius={1} fillOpacity={0} opacity={0} weight={0} onClick={(event) => this.handleMarkerClick(event, this.props.getCoords)} onMouseOver={this.handleMarkerMouseOver}/>
         )
       }
     }

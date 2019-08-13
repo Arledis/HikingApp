@@ -15,7 +15,6 @@ class RouteCreator extends Component {
     this.calculateRouteLength = this.calculateRouteLength.bind(this)
     this.prettyLength = this.prettyLength.bind(this)
     this.createNewLineString = this.createNewLineString.bind(this)
-    this.displayRoute = this.displayRoute.bind(this)
     this.handleSaveRoute = this.handleSaveRoute.bind(this)
     this.enterRouteName = this.enterRouteName.bind(this)
   }
@@ -52,16 +51,9 @@ class RouteCreator extends Component {
     this.setState({routeName: event.target.value})
   }
 
-  displayRoute(geoJsonData) {
-    if(this.props.newRoute.start && this.props.newRoute.end) {
-      this.props.setRouteGeoJson(<GeoJSON data={geoJsonData} key={"myRoute"} color={"red"} weight={5}/>)
-    }
-  }
-
   handleSaveRoute(event) {
     let length = this.calculateRouteLength()
     let geoJsonData = this.createNewLineString()
-    this.displayRoute(geoJsonData)
     let route = {
       name: this.state.routeName,
       completed: false,

@@ -8,9 +8,9 @@ class AdminContainer extends Component{
   constructor(props){
     super(props)
     this.state = {
-      accommodation: null,
+      accommodations: null,
       services: null,
-      pointsOfInterest: null,
+      pointOfInterests: null,
       showModal: false,
       modalType: null
     }
@@ -76,12 +76,6 @@ class AdminContainer extends Component{
     this.setState(newState)
   }
 
-  untoggleModal(){
-    let newState = Object.assign({}, this.state)
-    newState.showModal = false
-    this.setState(newState)
-  }
-
   handleLocationPost(location, type){
     const url = `/api/${type}`
     const request = new Request();
@@ -91,17 +85,22 @@ class AdminContainer extends Component{
 
   render(){
     return(
-      <div id="admin-container">
-      <div id="admin-header">
-      <h1>Admin Page</h1>
-      </div>
+<>
+<div id="admin-header">
+  <h1 id="admin-title">Admin Page</h1>
+</div>
+  <div id="admin-container">
+
+      <div id="button-holder">
       <button onClick={() => this.toggleModal("accommodations")}>Add Accommodation</button>
       <button onClick={() => this.toggleModal("services")}>Add Service</button>
       <button onClick={() => this.toggleModal("pointOfInterests")}>Add Point of Interest</button>
+</div>
 
       <LocationTable locations={this.state} deleteLocation={this.deleteLocation}/>
       {this.showModal()}
       </div>
+      </>
     )
   }
 

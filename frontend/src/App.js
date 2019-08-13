@@ -19,6 +19,8 @@ class App extends Component {
     this.removeUserFavourites = this.removeUserFavourites.bind(this);
     this.deleteRoute = this.deleteRoute.bind(this)
     this.updateRouteCompletion = this.updateRouteCompletion.bind(this)
+    this.mapClick = this.mapClick.bind(this)
+    this.adminClick = this.adminClick.bind(this)
   }
 
   componentDidMount(){
@@ -32,6 +34,10 @@ class App extends Component {
   }
 
   updateRouteCompletion(route) {
+    let newState = Object.assign({}, this.state)
+    let index = newState.users[0].routes.indexOf(route)
+    newState.users[0].routes[index].completed = !route.completed
+    this.setState(newState)
     let request = new Request()
     let url = `/api/routes/${route.id}`;
     request.patch(url, {completed: (!route.completed)})
@@ -55,10 +61,12 @@ class App extends Component {
     request.patch('/api/users/1', {favourites: this.state.users[0].favourites} )
   }
 
-  createNewRoute(route) {
+  createNewRoute(route, event) {
+    event.preventDefault()
     let newState = Object.assign({}, this.state)
     newState.users[0].routes.push(route)
     this.setState(newState)
+    console.log(route);
     const request = new Request()
     request.post('api/routes/', route)
   }
@@ -72,16 +80,31 @@ class App extends Component {
     request.patch('/api/users/1', {favourites: this.state.users[0].favourites} )
   }
 
+  mapClick(){
+    let newState = Object.assign({}, this.state)
+    this.setState(newState)
+    window.location = '/map'
+    console.log("It clicks");
+  }
+
+  adminClick(){
+    let newState = Object.assign({}, this.state)
+    this.setState(newState)
+    window.location = '/admin'
+    console.log("Admin click");
+  }
+
   render() {
     return (
       <div>
+
       <Router>
            <Switch>
            <Route exact path="/" render={ () => {
-            return <HomePage />
-          }} />
+            return <HomePage clickMap={this.mapClick} clickAdmin={this.adminClick}/>
+            }} />
                <Route exact path="/map" render={() =>{
-                 return <MainContainer
+                   return <MainContainer
                  user={this.state.users[0]} updateUsersFavourites={this.updateUsersFavourites}
                  removeUserFavourites={this.removeUserFavourites} updateUserRoutes={this.updateUserRoutes}
                  createNewRoute={this.createNewRoute}

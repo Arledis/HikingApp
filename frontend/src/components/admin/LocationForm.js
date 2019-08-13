@@ -17,7 +17,6 @@ class LocationForm extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
     let coordinates = [this.state.currentPosition.lat, this.state.currentPosition.lng]
     const location = {
       "name": event.target.name.value,
@@ -73,8 +72,9 @@ class LocationForm extends Component {
 render() {
   return(
     <>
-    <h1>Create new location</h1>
+
     <div id="form-holder">
+    <h1 id="form-header">Create new location</h1>
 
     <Map center={this.state.position} zoom={6} id="form-map-box"
     onClick={this.handleClick}>
@@ -96,9 +96,9 @@ render() {
 
     <button type="submit">Save</button>
     </form>
-
-    </div>
     <button onClick={this.closeModal}>Close Window</button>
+    </div>
+
     </>
   )
 

@@ -5,6 +5,17 @@
   background-size: cover;
   position: relative;
   height:100vh;
+  font-size: 7em;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+
+
+}
+
+@font-face {
+    font-family: 'oswald';
+    src: url('/font/Beauty.ttf');
 }
 
 .info-boxes{
@@ -24,31 +35,67 @@ img{
   left: 50%;
   transform: translate(-50%, -50%);
   color: black;
+
+
 }
 
 .title{
-  font-size: 2.9rem;
+    font-size: 1em;
     margin-bottom: 1.5em;
-    font-weight: 900;
+    font-weight: 10em;
     margin-top: 1em;
+    padding: 0;
+    margin: 0;
+    font-family: oswald;
+
+
+
 }
 
 .blurb{
-  font-size: 1.4rem;
-    margin-bottom: 1.5em;
+  font-size: 1.2rem;
     font-weight: 900;
     margin-top: 1em;
+    color: black;
+
 }
 
+
  .button{
-   display: inline-block;
-       font-size: 1rem;
-       text-decoration: none;
-       border-width: 3px;
-       border-style: solid;
-       padding: 0.2em 2em;
+   background-color: #e7e7e7;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px;
+  padding: 0.2em 2em;
 }
 
 .button:hover{
   background-color: lightgrey;
+}
+
+.button-admin{
+  background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+ border: none;
+ color: Transparent;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ border-radius: 10px;
+ padding: 0.2em 2em;
+}
+
+.button-admin:hover{
+  background-color: lightgrey;
+  color: black;
 }

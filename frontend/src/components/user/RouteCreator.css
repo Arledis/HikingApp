@@ -1,13 +1,11 @@
 #route-creator {
-  background-color: pink;
   display: flex;
   flex-direction: column;
-  height: 79vh;
-  padding-top: 1vh;
+  height: 78vh;
+  padding: 1vh;
 }
 
 form {
-  margin: 0 1vw 1vw 1vw;
   display: flex;
   flex-direction: column;
 }
@@ -32,4 +30,38 @@ label {
 #length-display {
   font-weight: bold;
   font-size: 1.3rem;
+}
+
+#name-input {
+  width: 100%;
+  font-size: 1.5rem;
+  border-radius: 4px;
+  border: 0px;
+  margin-bottom: 1vw;
+  text-align: center;
+}
+
+.form-section input {
+  margin: 1vw;
+  border-radius: 8px;
+  border: 2px solid lightgreen;
+  font-size: 1rem;
+  padding-left: 1vh
+}
+
+.form-section input:focus {
+  border: 2px red solid;
+}
+
+#save-button {
+  background-color: green;
+  border: none;
+  padding: 1vw;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.3rem
+}
+
+#save-button:hover {
+  background-color: limegreen;
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 import LocationSuggestion from './LocationSuggestion'
+import ProgressBar from '../general/ProgressBar'
 
-const UserProfile = ({ user, locations}) => {
+const UserProfile = ({user, locations}) => {
 
   const getUserName = () => {
     if(user){
@@ -21,10 +22,14 @@ const UserProfile = ({ user, locations}) => {
    }
  }
 
+ const getDistanceWalked = () => { if(user) { return user.distanceWalked } }
+
 
   return (
     <div id="user-profile">
       <h2>Welome back {getUserName()}!</h2>
+      <ProgressBar progress={getDistanceWalked()} total={864.00} />
+
       <h2>Have a look to this suggestions!</h2>
       {getLocations()}
     </div>

@@ -10,8 +10,8 @@ const InfoBox = ({title, blurb, pic}) => {
 
       <div class="info-box">
         <img src={pic} alt="pic"/>
-        <h1>{title}</h1>
-        <p>{blurb}</p>
+        <h1 class="info-box-h1">{title}</h1>
+        <p class="info-box-p">{blurb}</p>
       </div>
 
     </div>

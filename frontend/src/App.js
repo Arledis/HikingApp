@@ -12,15 +12,15 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      users: [],
-      mapClick: false
+      users: []
     }
     this.updateUsersFavourites = this.updateUsersFavourites.bind(this);
     this.createNewRoute = this.createNewRoute.bind(this)
     this.removeUserFavourites = this.removeUserFavourites.bind(this);
     this.deleteRoute = this.deleteRoute.bind(this)
     this.updateRouteCompletion = this.updateRouteCompletion.bind(this)
-    this.setMapClickToTrue = this.setMapClickToTrue.bind(this)
+    this.mapClick = this.mapClick.bind(this)
+    this.adminClick = this.adminClick.bind(this)
   }
 
   componentDidMount(){
@@ -75,11 +75,18 @@ class App extends Component {
     request.patch('/api/users/1', {favourites: this.state.users[0].favourites} )
   }
 
-  setMapClickToTrue(){
+  mapClick(){
     let newState = Object.assign({}, this.state)
-    newState.mapClick = true;
     this.setState(newState)
+    window.location = '/map'
     console.log("It clicks");
+  }
+
+  adminClick(){
+    let newState = Object.assign({}, this.state)
+    this.setState(newState)
+    window.location = '/admin'
+    console.log("Admin click");
   }
 
   render() {
@@ -89,17 +96,15 @@ class App extends Component {
       <Router>
            <Switch>
            <Route exact path="/" render={ () => {
-            return <HomePage clickMap={this.setMapClickToTrue}/>
+            return <HomePage clickMap={this.mapClick} clickAdmin={this.adminClick}/>
             }} />
                <Route exact path="/map" render={() =>{
-                 if(this.state.mapClick === true){
                    return <MainContainer
                  user={this.state.users[0]} updateUsersFavourites={this.updateUsersFavourites}
                  removeUserFavourites={this.removeUserFavourites} updateUserRoutes={this.updateUserRoutes}
                  createNewRoute={this.createNewRoute}
                  deleteRoute={this.deleteRoute}
                  updateRouteCompletion={this.updateRouteCompletion}/>
-                 }
                }} />
                <Route exact path="/admin" render={() =>{
                  return <AdminContainer />

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './AdminContainer.css'
 import LocationTable from '../components/admin/LocationTable'
 import Request from '../helpers/request';
-import LocationForm from '../components/admin/LocationForm'
 import Modal from '../components/general/Modal'
 
 class AdminContainer extends Component{
@@ -12,11 +11,14 @@ class AdminContainer extends Component{
       accommodation: null,
       services: null,
       pointsOfInterest: null,
-      showModal: false
+      showModal: false,
+      modalType: null
     }
     this.fetchLocations = this.fetchLocations.bind(this)
+    this.findLocationById = this.findLocationById.bind(this)
     this.deleteLocation = this.deleteLocation.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
+    this.handleLocationPost = this.handleLocationPost.bind(this)
   }
 
   componentDidMount() {
@@ -41,20 +43,36 @@ class AdminContainer extends Component{
     })
   }
 
-  deleteLocation(location) {
+  findLocationById(id){
+    const location = this.state.locations.find((location) => {
+      return location.id = parseInt(id)
+    })
+    return location;
+  }
+
+  deleteLocation(location, type) {
     let request = new Request()
-    // let url = "/api/locations/{type}/"
-    console.log(location.id);
-    // request.delete(url)
+    let url = `/api/${type}/${location}`;
+    request.delete(url).then(() => {
+      window.location = '/admin'
+    });
   }
 
   showModal() {
-    if(this.state.showModal) { return <Modal locationForm={LocationForm} /> }
+    if(this.state.showModal) {
+      return(
+        <Modal
+          handleLocationPost={this.handleLocationPost}
+          type={this.state.modalType}
+          toggleModal={this.toggleModal}/>
+      )
+    }
   }
 
-  toggleModal() {
+  toggleModal(type) {
     let newState = Object.assign({}, this.state)
-    newState.showModal = true
+    newState.showModal = !this.state.showModal
+    newState.modalType = type
     this.setState(newState)
   }
 
@@ -64,14 +82,22 @@ class AdminContainer extends Component{
     this.setState(newState)
   }
 
+  handleLocationPost(location, type){
+    const url = `/api/${type}`
+    const request = new Request();
+    request.post(url, location)
+  }
+
+
   render(){
     return(
       <div id="admin-container">
       <div id="admin-header">
       <h1>Admin Page</h1>
       </div>
-
-      <button onClick={this.toggleModal}>Add Location</button>
+      <button onClick={() => this.toggleModal("accommodations")}>Add Accommodation</button>
+      <button onClick={() => this.toggleModal("services")}>Add Service</button>
+      <button onClick={() => this.toggleModal("pointOfInterests")}>Add Point of Interest</button>
 
       <LocationTable locations={this.state} deleteLocation={this.deleteLocation}/>
       {this.showModal()}

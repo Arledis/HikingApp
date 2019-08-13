@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {GeoJSON} from 'react-leaflet'
 import './RouteCreator.css'
 import './SideBar.css'
 import RouteDisplay from './RouteDisplay'

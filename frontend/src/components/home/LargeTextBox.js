@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './LargeTextBox.css';
+import './LargeTextBox.css';
 
 const LargeTextBox = () => {
 

@@ -233,7 +233,7 @@ class MapBox extends Component {
       url="https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png"
       />
       {this.showTrail()}
-      {this.showLocations("accommodation")}
+      {this.showLocations()}
       {this.createPoints()}
       {this.state.routeMarkers.start}
       {this.state.routeMarkers.end}

@@ -7,17 +7,14 @@ const Footer = () => {
     <div className="footer">
 
     <div id="footer-address">
-    <h1>Contact Information:</h1>
-    <p>Address: DACS.Inc. Code Towers, 123 Made Up Street, Glasgow</p>
-    <p>Email: Dacs@Hotpost.org</p>
-    </div>
-
-    <div id="footer-back-to-top">
-    <h1>Back to the top! (tbc)</h1>
+    <h1 class="footer-h1">Contact Information:</h1>
+    <p class="footer-p">Address: DACS.Inc. Code Towers, 123 Made Up Street, Glasgow</p>
+    <p class="footer-p">Email: Dacs@Hotpost.org</p>
     </div>
 
     <div id="footer-snt-link">
-    <h1>Scottish National Trail Link (tbc)</h1>
+    <a href="https://www.scottishnationaltrail.org.uk/"><h1 class="footer-h1">Scottish National Trail Website</h1></a>
+
     </div>
 
     </div>

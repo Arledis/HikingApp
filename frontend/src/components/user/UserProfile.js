@@ -11,7 +11,6 @@ const UserProfile = ({ user, locations}) => {
 
   const getLocations = () => {
     if(locations.accommodation) {
-      console.log(locations)
       return (
         <>
 <LocationSuggestion suggestion={locations.accommodation[0]}/>

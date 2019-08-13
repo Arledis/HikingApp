@@ -22,7 +22,7 @@
 #admin-header {
   color: white;
   width: 100vw;
-  background-color: lightgreen;
+  background-color: blue;
   height: 10vh;
 }
 
@@ -34,28 +34,28 @@
 }
 
 
-button {
+#admin-container button {
   background-color: yellow;
   border-radius: 8px;
   border: 2px solid black;
   font-size: 15px;
 }
 
-th {
+#admin-container th {
   background-color: white;
   font-weight: bold;
   border: 2px solid black;
 
 }
 
-th, td {
+#admin-container th, td {
   padding: 5px;
 }
 
-tr:nth-child(even) {
+#admin-container tr:nth-child(even) {
   background-color: lightblue;
 }
 
-tr:hover {
+#admin-container tr:hover {
   background-color: lightgrey;
 }

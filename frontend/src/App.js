@@ -32,6 +32,10 @@ class App extends Component {
   }
 
   updateRouteCompletion(route) {
+    let newState = Object.assign({}, this.state)
+    let index = newState.users[0].routes.indexOf(route)
+    newState.users[0].routes[index].completed = !route.completed
+    this.setState(newState)
     let request = new Request()
     let url = `/api/routes/${route.id}`;
     request.patch(url, {completed: (!route.completed)})
@@ -55,10 +59,12 @@ class App extends Component {
     request.patch('/api/users/1', {favourites: this.state.users[0].favourites} )
   }
 
-  createNewRoute(route) {
+  createNewRoute(route, event) {
+    event.preventDefault()
     let newState = Object.assign({}, this.state)
     newState.users[0].routes.push(route)
     this.setState(newState)
+    console.log(route);
     const request = new Request()
     request.post('api/routes/', route)
   }

@@ -1,5 +1,4 @@
 #route-creator {
-  background-color: pink;
   display: flex;
   flex-direction: column;
   height: 78vh;
@@ -44,8 +43,8 @@ label {
 
 .form-section input {
   margin: 1vw;
-  border-radius: 4px;
-  border: 2px solid pink;
+  border-radius: 8px;
+  border: 2px solid lightgreen;
   font-size: 1rem;
   padding-left: 1vh
 }

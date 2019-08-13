@@ -27,6 +27,7 @@ class MapBox extends Component {
       }
     }
     this.setRouteGeoJson = this.setRouteGeoJson.bind(this)
+    this.resetMarkers = this.resetMarkers.bind(this)
   }
 
   fetchTrail() {
@@ -41,6 +42,18 @@ class MapBox extends Component {
     })
   }
 
+  displayUserRoutes() {
+    if(this.props.user) {
+    for(let route of this.props.user.routes) {
+      return(
+        <GeoJSON
+        key={route.name}
+        data={route.geoJsonData}/>
+      )
+    }
+  }
+  }
+
   showTrail() {
     if(this.state.trail) {
       return (
@@ -49,6 +62,13 @@ class MapBox extends Component {
         data={this.state.trail}/>
       )
     }
+  }
+
+  resetMarkers() {
+    let newState = Object.assign({}, this.state)
+    newState.routeMarkers.start = null
+    newState.routeMarkers.end = null
+    this.setState(newState)
   }
 
   setRouteGeoJson(geoJson) {
@@ -182,7 +202,9 @@ class MapBox extends Component {
       updateUserRoutes={this.props.updateUserRoutes}
       locations={this.state.locations}
       deleteRoute={this.props.deleteRoute}
-      updateRouteCompletion={this.props.updateRouteCompletion}/>
+      updateRouteCompletion={this.props.updateRouteCompletion}
+      resetMarkers={this.resetMarkers}
+      resetRouteCreation={this.props.resetRouteCreation}/>
 
 
       <Map center={position} zoom={this.state.settings.zoom} id="map-box" zoomControl={false}>
@@ -197,6 +219,8 @@ class MapBox extends Component {
       {this.state.routeMarkers.start}
       {this.state.routeMarkers.end}
       {this.state.routeMarkers.geoJson}
+
+      {/* }{this.displayUserRoutes()} */}
       </Map>
       </>
     )

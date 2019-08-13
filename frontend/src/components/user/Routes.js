@@ -9,7 +9,6 @@ const Routes = ({routes, deleteRoute, updateRouteCompletion}) => {
 
   const toggleCompleted = (route, event) => {
     updateRouteCompletion(route)
-
   }
 
   const createCheckbox = (route) => {

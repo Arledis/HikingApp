@@ -58,25 +58,28 @@ class RouteCreator extends Component {
     }
   }
 
-  handleSaveRoute() {
+  handleSaveRoute(event) {
     let length = this.calculateRouteLength()
     let geoJsonData = this.createNewLineString()
     this.displayRoute(geoJsonData)
     let route = {
       name: this.state.routeName,
       completed: false,
-      geoJsonData: geoJsonData,
+      geoJsonData: geoJsonData.coordinates,
       length: length,
       user: "http://localhost:8080/api/users/1"
     }
-    console.log(route)
-    this.props.createNewRoute(route)
+    this.props.createNewRoute(route, event)
+    // this.props.resetMarkers()
+    // this.props.resetRouteCreation()
+    this.setState({ routeName: null })
+    event.target.reset();
   }
 
   render() {
     return(
       <div className="sidebar-component" id="route-creator">
-      <form>
+      <form onSubmit={this.handleSaveRoute}>
       <input type="text" placeholder="Enter Route Name" onInput={this.enterRouteName} required id="name-input"/>
       <div className="form-section">
       <label htmlFor="start">Start</label>
@@ -86,10 +89,11 @@ class RouteCreator extends Component {
       <label htmlFor="end">End</label>
       <input type="text" onClick={this.props.setEnd} value={this.props.newRoute.end}></input>
       </div>
-      </form>
+
       <h2>Length: <span id="length-display">{this.prettyLength()}</span></h2>
       <RouteDisplay />
-      <button onClick={this.handleSaveRoute} id="save-button">Save Route</button>
+      <button type="submit" id="save-button">Save Route</button>
+      </form>
       </div>
     )
   }

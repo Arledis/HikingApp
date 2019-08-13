@@ -2,10 +2,6 @@ import React, {Component} from 'react';
 import './AdminContainer.css'
 import LocationTable from '../components/admin/LocationTable'
 import Request from '../helpers/request';
-<<<<<<< HEAD
-=======
-import LocationForm from '../components/admin/LocationForm'
->>>>>>> eda1ec860e6242f65a3cae81a937cd813a266a67
 import Modal from '../components/general/Modal'
 
 class AdminContainer extends Component{
@@ -15,21 +11,14 @@ class AdminContainer extends Component{
       accommodation: null,
       services: null,
       pointsOfInterest: null,
-<<<<<<< HEAD
       showModal: false,
       modalType: null
-=======
-      showModal: false
->>>>>>> eda1ec860e6242f65a3cae81a937cd813a266a67
     }
     this.fetchLocations = this.fetchLocations.bind(this)
     this.findLocationById = this.findLocationById.bind(this)
     this.deleteLocation = this.deleteLocation.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
-<<<<<<< HEAD
     this.handleLocationPost = this.handleLocationPost.bind(this)
-=======
->>>>>>> eda1ec860e6242f65a3cae81a937cd813a266a67
   }
 
   componentDidMount() {
@@ -70,7 +59,6 @@ class AdminContainer extends Component{
   }
 
   showModal() {
-<<<<<<< HEAD
     if(this.state.showModal) {
       return(
         <Modal
@@ -85,20 +73,6 @@ class AdminContainer extends Component{
     let newState = Object.assign({}, this.state)
     newState.showModal = !this.state.showModal
     newState.modalType = type
-=======
-    if(this.state.showModal) { return <Modal locationForm={LocationForm} /> }
-  }
-
-  toggleModal() {
-    let newState = Object.assign({}, this.state)
-    newState.showModal = true
-    this.setState(newState)
-  }
-
-  untoggleModal(){
-    let newState = Object.assign({}, this.state)
-    newState.showModal = false
->>>>>>> eda1ec860e6242f65a3cae81a937cd813a266a67
     this.setState(newState)
   }
 
@@ -121,14 +95,9 @@ class AdminContainer extends Component{
       <div id="admin-header">
       <h1>Admin Page</h1>
       </div>
-
-<<<<<<< HEAD
       <button onClick={() => this.toggleModal("accommodations")}>Add Accommodation</button>
       <button onClick={() => this.toggleModal("services")}>Add Service</button>
       <button onClick={() => this.toggleModal("pointOfInterests")}>Add Point of Interest</button>
-=======
-      <button onClick={this.toggleModal}>Add Location</button>
->>>>>>> eda1ec860e6242f65a3cae81a937cd813a266a67
 
       <LocationTable locations={this.state} deleteLocation={this.deleteLocation}/>
       {this.showModal()}

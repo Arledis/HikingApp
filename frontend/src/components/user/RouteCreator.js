@@ -69,22 +69,31 @@ class RouteCreator extends Component {
 
   render() {
     return(
-      <div className="sidebar-component" id="route-creator">
+      <div id="route-creator">
+
       <form onSubmit={this.handleSaveRoute}>
+
       <input type="text" placeholder="Enter Route Name" onInput={this.enterRouteName} required id="name-input"/>
-      <div className="form-section">
-      <label htmlFor="start">Start</label>
-      <input type="text" onClick={this.props.setStart} value={this.props.newRoute.start}></input>
-      </div>
-      <div className="form-section">
-      <label htmlFor="end">End</label>
-      <input type="text" onClick={this.props.setEnd} value={this.props.newRoute.end}></input>
+
+      <div id="wrapper">
+
+        <div className="form-section">
+        <label htmlFor="start">Start</label>
+        <input type="text" onClick={this.props.setStart} value={this.props.newRoute.start}></input>
+        </div>
+
+        <div className="form-section">
+        <label htmlFor="end">End</label>
+        <input type="text" onClick={this.props.setEnd} value={this.props.newRoute.end}></input>
+        </div>
+
+        <h2>Length: <span id="length-display">{this.prettyLength()}</span></h2>
+        <button type="submit" id="save-button">Save Route</button>
+
       </div>
 
-      <h2>Length: <span id="length-display">{this.prettyLength()}</span></h2>
-      <RouteDisplay />
-      <button type="submit" id="save-button">Save Route</button>
       </form>
+
       </div>
     )
   }

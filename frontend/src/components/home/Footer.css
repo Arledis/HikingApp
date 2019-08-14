@@ -3,12 +3,12 @@
   bottom: zero;
   background-color: darkgrey;
   width: 100vw;
-  height: 10vh;
+  height: 20vh;
+  text-align: center;
 }
 
 .footer-h1 {
   font-size: 15px;
-  colour: darkgrey;
 }
 
 .footer-p {

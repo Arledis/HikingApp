@@ -32,8 +32,8 @@ const Routes = ({routes, deleteRoute, updateRouteCompletion}) => {
   })
 
   return(
-    <div id="routes" className="sidebar-component">
-      <table id="route-table">
+    <div id="routes">
+      <table className="sidebar-table">
       <tbody>
         <tr>
           <th>Name</th>

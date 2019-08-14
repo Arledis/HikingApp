@@ -1,4 +1,5 @@
 import React from 'react';
+import './SideBar.css'
 
 const Favourites = ({ favourites, removeUserFavourites }) => {
 
@@ -53,7 +54,7 @@ const Favourites = ({ favourites, removeUserFavourites }) => {
   })
 
   return (
-    <table>
+    <table className="sidebar-table">
     <tbody>
       <tr>
         <th>Name</th>

@@ -14,11 +14,12 @@ const UserProfile = ({user, locations}) => {
   const getLocations = () => {
     if(locations.accommodation) {
       return (
-        <>
+        <div id="view-suggestions">
+        <h2 id="suggest-text">Why not visit these sites on your next trip?</h2>
         <LocationSuggestion suggestion={locations.accommodation[Math.floor(Math.random()*locations.accommodation.length)]}/>
         <LocationSuggestion suggestion={locations.pointsOfInterest[Math.floor(Math.random()*locations.pointsOfInterest.length)]}/>
         <LocationSuggestion suggestion={locations.services[Math.floor(Math.random()*locations.services.length)]}/>
-       </>
+       </div>
      )
    }
  }
@@ -32,11 +33,7 @@ const UserProfile = ({user, locations}) => {
         <h2>Welome back {getUserName()}!</h2>
           <ProgressBar progress={getDistanceWalked()} total={864.00} />
         </div>
-        <hr/>
-        <div id="view-suggestions">
-      <h2 id="suggest-text">Why not visit these locations on your next trip?</h2>
       {getLocations()}
-      </div>
     </div>
   )
 }

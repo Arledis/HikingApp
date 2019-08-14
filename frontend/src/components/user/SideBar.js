@@ -54,21 +54,23 @@ const SideBar = ({view, setView, user, locations, createNewRoute, newRoute, curr
     setView(event.target.value)
   }
 
-
-  const sidebarButton = {
-    width: "auto",
-    height: "6vh",
-    backgroundColor: "limegreen",
-    border: "none",
-    color: "white",
-    textAlign: "center",
-    textDecoration: "none",
-    display: "inline-block"
+  const setViewBackgroundColor = (selectedView) => {
+    return view[`${selectedView}`] ? "green" : "limegreen"
   }
 
-  const sidebarButton:hover = {
-    backgroundColor: "green"
+  const sidebarButton = (selectedView) => {
+    return {
+      width: "auto",
+      height: "6vh",
+      backgroundColor: setViewBackgroundColor(selectedView),
+      border: "none",
+      color: "white",
+      textAlign: "center",
+      textDecoration: "none",
+      display: "inline-block"
+    }
   }
+
 
   return(
     <div id="side-bar">
@@ -76,13 +78,13 @@ const SideBar = ({view, setView, user, locations, createNewRoute, newRoute, curr
       <h1>HikeBuddy</h1>
       </div>
       <div id="sidebar-nav">
-        <button className={sidebarButton} onClick={handleSetView} value="profile">
+        <button style={sidebarButton('profile')} onClick={handleSetView} value="profile">
         <i class="fas fa-hiking"></i> Profile</button>
-        <button className={sidebarButton} onClick={handleSetView} value="routes">
+        <button style={sidebarButton('routes')} onClick={handleSetView} value="routes">
         <i class="fas fa-route"></i> Routes</button>
-        <button className={sidebarButton} onClick={createRoute} value="newRoute">
+        <button style={sidebarButton('newRoute')} onClick={createRoute} value="newRoute">
         <i class="fas fa-plus-circle"></i> New Route</button>
-        <button className={sidebarButton} onClick={handleSetView} value="favourites">
+        <button style={sidebarButton('favourites')} onClick={handleSetView} value="favourites">
         <i class="fas fa-heart"></i> Favourites</button>
       </div>
       {getView()}

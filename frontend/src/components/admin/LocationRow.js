@@ -1,4 +1,5 @@
 import React from 'react'
+import StarRating from '../general/StarRating'
 
 const LocationRow = ({location, deleteLocation, type}) => {
 
@@ -11,7 +12,7 @@ const handleDelete = (event) => {
       <td>{ location.name }</td>
       <td>{ location.description }</td>
       <td>{ location.type }</td>
-      <td>{ location.rating }</td>
+      <td><StarRating rating={ location.rating } /></td>
       <td><button onClick={handleDelete} value={location.id}>Delete</button></td>
     </tr>
   )

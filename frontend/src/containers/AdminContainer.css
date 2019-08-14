@@ -2,7 +2,6 @@
   height: 100vh;
   width: 100vw;
   overflow-y: scroll;
-  background-color: lightblue;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,8 +21,16 @@
 #admin-header {
   color: white;
   width: 100vw;
-  background-color: blue;
+  background-color: green;
   height: 10vh;
+  font-size: 30px;
+  font-style: bold;
+  text-align: center;
+}
+
+#admin-header h1 {
+margin-top: 20px;
+margin-bottom: 20px;
 }
 
 #admin-table {
@@ -31,29 +38,39 @@
   width: 80vw;
   font-size: 15px;
   border: 2px solid black;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 
 #admin-container button {
-  background-color: yellow;
+  background-color: green;
   border-radius: 8px;
-  border: 2px solid black;
   font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: white;
 }
 
 #admin-container th {
   background-color: white;
   font-weight: bold;
   border: 2px solid black;
-
+  border-radius: 10px;
+  font-size: 18px;
+  padding: 15px 0 0 0;
 }
 
 #admin-container th, td {
+  height: 5vh;
+}
+
+#admin-container td {
   padding: 5px;
 }
 
 #admin-container tr:nth-child(even) {
-  background-color: lightblue;
+  background-color: lightgreen;
 }
 
 #admin-container tr:hover {

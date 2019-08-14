@@ -54,19 +54,35 @@ const SideBar = ({view, setView, user, locations, createNewRoute, newRoute, curr
     setView(event.target.value)
   }
 
+
+  const sidebarButton = {
+    width: "auto",
+    height: "6vh",
+    backgroundColor: "limegreen",
+    border: "none",
+    color: "white",
+    textAlign: "center",
+    textDecoration: "none",
+    display: "inline-block"
+  }
+
+  const sidebarButton:hover = {
+    backgroundColor: "green"
+  }
+
   return(
     <div id="side-bar">
       <div id="header">
       <h1>HikeBuddy</h1>
       </div>
       <div id="sidebar-nav">
-        <button className="sidebar-button" onClick={handleSetView} value="profile">
+        <button className={sidebarButton} onClick={handleSetView} value="profile">
         <i class="fas fa-hiking"></i> Profile</button>
-        <button className="sidebar-button" onClick={handleSetView} value="routes">
+        <button className={sidebarButton} onClick={handleSetView} value="routes">
         <i class="fas fa-route"></i> Routes</button>
-        <button className="sidebar-button" onClick={createRoute} value="newRoute">
+        <button className={sidebarButton} onClick={createRoute} value="newRoute">
         <i class="fas fa-plus-circle"></i> New Route</button>
-        <button className="sidebar-button" onClick={handleSetView} value="favourites">
+        <button className={sidebarButton} onClick={handleSetView} value="favourites">
         <i class="fas fa-heart"></i> Favourites</button>
       </div>
       {getView()}

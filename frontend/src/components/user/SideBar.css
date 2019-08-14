@@ -24,42 +24,44 @@
   display: flex;
 }
 
-.sidebar-button {
-  width: auto;
-  height: 6vh;
-  background-color: limegreen;
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.sidebar-button:hover {
-  background-color: green;
-}
-
 .sidebar-component {
   height: 78vh;
   padding-top: 1vh;
   border-radius: 0px 0px 8px 8px
 }
 
-table {
+.sidebar-table {
   font-size: 0.8rem;
   width: 28vw;
   margin: 1vw 1vw 0vw 1vw;
   background-color: white;
 }
 
-table, th, td {
-  border: 1px solid black;
+.sidebar-table table {
+  border-radius: 8px;
+}
+
+.sidebar-table table, th, td {
+  /* border: 1px solid black; */
   text-align: center;
 }
 
-th {
+.sidebar-table th {
   font-size: 1rem;
   padding: 1vh;
+  background-color: limegreen;
+  color: white;
+}
+
+.sidebar-table button {
+  background-color: #ff0000;
+  border: none;
+  border-radius: 4px;
+  color: white;
+}
+
+.sidebar-table button:hover {
+  background-color: #ff8000;
 }
 
 #side-bar h1 {

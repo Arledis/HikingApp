@@ -2,6 +2,7 @@ import React from 'react';
 import LocationSuggestion from './LocationSuggestion'
 import ProgressBar from '../general/ProgressBar'
 import './UserProfile.css'
+
 const UserProfile = ({user, locations}) => {
 
   const getUserName = () => {

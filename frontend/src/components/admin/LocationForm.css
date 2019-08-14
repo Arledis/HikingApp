@@ -1,21 +1,89 @@
 #form-holder {
   display: flex;
-  flex-direction: column;
-  width: 100%;
   justify-content: space-around;
   align-items: center;
-  background-color: lightblue;
-  border: 2px solid black;
-
+  border-radius: 8px;
+  height: 85vh;
 }
 
 #form-map-box {
-  width: 50vw;
-  height: 50vh;
-  border: 1px solid black;
-  margin: 2px;
+  width: 60%;
+  height: 100%;
+  border-radius: 8px 0 0 8px;
 }
 
-#form-header {
-  font-size: 10px;
+.fa-times {
+  color: grey;
+  align-self: flex-end;
+  margin-right: 1vw;
+  margin-top: 0;
+  font-size: 1.2rem;
+  z-index: 5;
+}
+
+.fa-times:hover {
+  color: black;
+  cursor: pointer;
+}
+
+#admin-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  background-color: lightgreen;
+  border-radius: 0 8px 8px 0;
+  width: 40%;
+}
+
+#admin-form h1 {
+  font-size: 1.3rem;
+  margin-top: -2vw;
+  margin-bottom: 0vw;
+}
+
+#admin-form h2 {
+  font-size: 1.1rem;
+}
+
+#coords-label {
+  margin-bottom: -2vh;
+}
+
+#admin-form input {
+  border: none;
+  border-radius: 8px;
+  margin: 1vw;
+  padding: 0.5vw;
+  width: 70%;
+  text-align: center;
+}
+
+#form-coords {
+  background-color: white;
+  padding: 1vw;
+  margin: 1vw;
+  width: 70%;
+  line-height: 1.5;
+  border-radius: 8px;
+  height: 6vw;
+}
+
+#admin-form select {
+  width: 75%;
+}
+
+#admin-form button {
+  padding: 1vw;
+  background-color: green;
+  width: 30%;
+  color: white;
+  border-radius: 12px;
+  margin-bottom: 1vw;
+  border: none;
+}
+
+#admin-form button:hover {
+  background-color: #ff8000;
 }

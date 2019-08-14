@@ -16,15 +16,17 @@ form {
 }
 
 input[type="text"] {
-  width: 23vw;
+  width: 20vw;
+  height: 5vh;
 }
 
 label {
   width: 4vw;
-  padding-right: 1vw;
+  padding-right: 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  font-size: 1.5rem;
 }
 
 #length-display {
@@ -41,6 +43,10 @@ label {
   text-align: center;
 }
 
+.form-section {
+  width: 100%;
+  padding: 1vw;
+}
 .form-section input {
   margin: 1vw;
   border-radius: 8px;
@@ -54,14 +60,16 @@ label {
 }
 
 #save-button {
-  background-color: green;
+  background-color: #ff0000;
   border: none;
   padding: 1vw;
   border-radius: 8px;
   color: white;
-  font-size: 1.3rem
+  width: 60%;
+  font-size: 1.3rem;
+  margin: auto;
 }
 
 #save-button:hover {
-  background-color: limegreen;
+  background-color: #ff8000;
 }

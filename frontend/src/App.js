@@ -34,14 +34,16 @@ class App extends Component {
   }
 
   updateRouteCompletion(route) {
-    let newState = Object.assign({}, this.state)
-    let index = newState.users[0].routes.indexOf(route)
-    newState.users[0].routes[index].completed = !route.completed
-    this.setState(newState)
     let request = new Request()
     let url = `/api/routes/${route.id}`;
     request.patch(url, {completed: (!route.completed)})
-  }
+      .then(() => {
+        let newState = Object.assign({}, this.state)
+        let index = newState.users[0].routes.indexOf(route)
+        newState.users[0].routes[index].completed = !route.completed
+        this.setState(newState)
+      })
+    }
 
   deleteRoute(route) {
     let request = new Request()
@@ -63,12 +65,15 @@ class App extends Component {
 
   createNewRoute(route, event) {
     event.preventDefault()
-    let newState = Object.assign({}, this.state)
-    newState.users[0].routes.push(route)
-    this.setState(newState)
-    console.log(route);
     const request = new Request()
     request.post('api/routes/', route)
+      .then(res => res.json())
+      .then(newRoute => {
+        let newState = Object.assign({}, this.state)
+        newState.users[0].routes.push(newRoute)
+        this.setState(newState)
+        console.log(newRoute.id);
+      })
   }
 
   removeUserFavourites(location){

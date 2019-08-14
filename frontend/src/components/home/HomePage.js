@@ -1,11 +1,9 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Switch} from 'react-router-dom';
 import './HomePage.css'
 import InfoBox from './InfoBox'
 import Footer from './Footer'
 import LargeTextBox from './LargeTextBox'
-import MainContainer from '../../containers/MainContainer'
-import AdminContainer from '../../containers/AdminContainer'
 
   const HomePage = ({user, clickMap, clickAdmin}) => {
 
@@ -28,7 +26,7 @@ import AdminContainer from '../../containers/AdminContainer'
 
 
         <div class="hero-text">
-          <h1 class="title">Hiking Buddy</h1>
+          <h1 class="title">Hiking Buddy<i class="fas fa-hiking"></i></h1>
           <p class="blurb">Walk the Scottish National Trail, the long distance walking route running the length of Scotland from Kirk Yetholm to Cape Wrath</p>
           <button class="button" onClick={() => handleMapClick()}>Login</button>
           <a href="#about"><button class="button" >About</button></a>

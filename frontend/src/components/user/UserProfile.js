@@ -1,7 +1,9 @@
 import React from 'react';
 import LocationSuggestion from './LocationSuggestion'
+import ProgressBar from '../general/ProgressBar'
+import './UserProfile.css'
 
-const UserProfile = ({ user, locations}) => {
+const UserProfile = ({user, locations}) => {
 
   const getUserName = () => {
     if(user){
@@ -21,13 +23,20 @@ const UserProfile = ({ user, locations}) => {
    }
  }
 
+ const getDistanceWalked = () => { if(user) { return user.distanceWalked } }
+
 
   return (
     <div id="user-profile">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <h2>Welome back {getUserName()}!</h2>
-      <h2>Have a look to this suggestions!</h2>
+        <div id="progress-bar-container">
+        <h2>Welome back {getUserName()}!</h2>
+          <ProgressBar progress={getDistanceWalked()} total={864.00} />
+        </div>
+        <hr/>
+        <div id="view-suggestions">
+      <h2 id="suggest-text">Why not visit these locations on your next trip?</h2>
       {getLocations()}
+      </div>
     </div>
   )
 }

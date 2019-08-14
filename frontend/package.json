@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@turf/length": "^6.0.2",
+    "geojson-elevation": "^1.1.2",
     "leaflet": "^1.5.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

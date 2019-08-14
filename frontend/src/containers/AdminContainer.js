@@ -8,9 +8,9 @@ class AdminContainer extends Component{
   constructor(props){
     super(props)
     this.state = {
-      accommodations: null,
-      services: null,
-      pointOfInterests: null,
+      accommodations: [],
+      services: [],
+      pointOfInterests: [],
       showModal: false,
       modalType: null
     }
@@ -36,9 +36,9 @@ class AdminContainer extends Component{
     Promise.all([promise1, promise2, promise3])
     .then(data => {
       const newState = Object.assign({}, this.state);
-      newState.accommodation = data[0]
+      newState.accommodations = data[0]
       newState.services = data[1]
-      newState.pointsOfInterest = data[2]
+      newState.pointOfInterests = data[2]
       this.setState(newState);
     })
   }
@@ -50,21 +50,24 @@ class AdminContainer extends Component{
     return location;
   }
 
-  deleteLocation(location, type) {
+  deleteLocation(id, type) {
     let request = new Request()
-    let url = `/api/${type}/${location}`;
-    request.delete(url).then(() => {
-      window.location = '/admin'
-    });
+    let url = `/api/${type}/${id}`
+    let newState = Object.assign({}, this.state)
+    let locationToBeDeleted = newState[`${type}`].filter(item => item.id === id)
+    let index = newState[type].indexOf(locationToBeDeleted)
+    newState[`${type}`].splice(index, 1)
+    this.setState(newState)
+    request.delete(url)
   }
 
   showModal() {
     if(this.state.showModal) {
       return(
         <Modal
-          handleLocationPost={this.handleLocationPost}
-          type={this.state.modalType}
-          toggleModal={this.toggleModal}/>
+        handleLocationPost={this.handleLocationPost}
+        type={this.state.modalType}
+        toggleModal={this.toggleModal}/>
       )
     }
   }
@@ -80,27 +83,32 @@ class AdminContainer extends Component{
     const url = `/api/${type}`
     const request = new Request();
     request.post(url, location)
+    .then(res => res.json())
+    .then(newLocation => {
+        let newState = Object.assign({}, this.state)
+        newState[`${type}`].push(newLocation)
+        this.setState(newState)
+    })
   }
 
 
   render(){
     return(
-<>
-<div id="admin-header">
-  <h1 id="admin-title">Admin Page</h1>
-</div>
-  <div id="admin-container">
+      <div id="admin-container">
+      <div id="admin-header">
+      <h1>Admin Page</h1></div>
+
 
       <div id="button-holder">
       <button onClick={() => this.toggleModal("accommodations")}>Add Accommodation</button>
       <button onClick={() => this.toggleModal("services")}>Add Service</button>
       <button onClick={() => this.toggleModal("pointOfInterests")}>Add Point of Interest</button>
-</div>
+      </div>
 
       <LocationTable locations={this.state} deleteLocation={this.deleteLocation}/>
       {this.showModal()}
+
       </div>
-      </>
     )
   }
 

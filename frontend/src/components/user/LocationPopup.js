@@ -1,5 +1,6 @@
 import React from 'react';
 import {Popup} from 'react-leaflet';
+import './LocationPopup.css'
 
 const LocationPopup = ({location, saveFavourite, user}) => {
 
@@ -27,10 +28,14 @@ const LocationPopup = ({location, saveFavourite, user}) => {
 
   return(
     <Popup>
-    <h1>{location.name}</h1>
-    <h2>Rating: {location.rating}</h2>
-    <h2>Details: {location.description}</h2>
+    <div id='location-popup'>
+      <img src={location.pictureURL} className="popup-image"/>
+
+      <h1>{location.name}</h1>
+      <h2>Rating: {location.rating}</h2>
+      <h2>{location.description}</h2>
     {displayButton()}
+    </div>
     </Popup>
   )
 }

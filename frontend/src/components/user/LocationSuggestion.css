@@ -1,25 +1,20 @@
 .suggestion-box {
-  height: 13.4vh;
-  width: 22vw;
+  height: 20vh;
+  width: 28vw;
   background-color: white;
-  margin: 4vw;
+  margin: 1vw;
   display: flex;
   /* align-content: center; */
-  border-radius: 10px;
+  border-radius: 8px;
   margin-left: center;
 
 }
-h5{
-  text-align: center;
+h5 {
   font-weight: bold;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
+  margin-bottom: 0.5vh;
 }
 
-.text{
-  text-align: justify;
-  margin-left: 1vh;
-  margin-right: 1vh;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
+.text {
+  max-width: 18vw;
+  padding: 1vw;
 }

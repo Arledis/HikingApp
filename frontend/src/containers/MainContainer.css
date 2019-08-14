@@ -5,3 +5,7 @@
   display: grid;
   grid-template-columns: 35vw auto;
 } */
+
+body, input, button {
+  font-family: 'Avenir'
+}

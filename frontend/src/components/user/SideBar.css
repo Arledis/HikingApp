@@ -11,7 +11,7 @@
 
 #header {
   height: 10vh;
-  background-color: white;
+  background-color: green;
   border-radius: 8px 8px 0px 0px;
   display: flex;
   justify-content: center;
@@ -20,14 +20,14 @@
 }
 
 #sidebar-nav {
+  justify-content: space-between;
   display: flex;
-  justify-content: space-around;
 }
 
 .sidebar-button {
-  width: 7.5vw;
+  width: auto;
   height: 6vh;
-  background-color: green;
+  background-color: limegreen;
   border: none;
   color: white;
   text-align: center;
@@ -36,7 +36,7 @@
 }
 
 .sidebar-button:hover {
-  background-color: darkgreen;
+  background-color: green;
 }
 
 .sidebar-component {
@@ -60,4 +60,14 @@ table, th, td {
 th {
   font-size: 1rem;
   padding: 1vh;
+}
+
+#side-bar h1 {
+  margin-bottom: -1vw;
+  font-size: 5rem;
+  color: white;
+  z-index: 5;
+  font-family: 'oswald';
+  src: url('/font/Beauty.ttf');
+  text-shadow: 2px 2px black;
 }

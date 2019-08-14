@@ -24,6 +24,7 @@ const UserProfile = ({ user, locations}) => {
 
   return (
     <div id="user-profile">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <h2>Welome back {getUserName()}!</h2>
       <h2>Have a look to this suggestions!</h2>
       {getLocations()}

@@ -72,7 +72,6 @@ class RouteCreator extends Component {
       <div id="route-creator">
 
       <form onSubmit={this.handleSaveRoute}>
-
       <input type="text" placeholder="Enter Route Name" onInput={this.enterRouteName} required id="name-input"/>
 
       <div id="wrapper">

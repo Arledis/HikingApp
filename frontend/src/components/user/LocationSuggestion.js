@@ -1,4 +1,5 @@
 import React from 'react'
+import StarRating from '../general/StarRating'
 import './LocationSuggestion.css'
 
 const LocationSuggestion = ({suggestion}) => {
@@ -19,7 +20,7 @@ const LocationSuggestion = ({suggestion}) => {
     <div className="text">
     <h5>{suggestion.name}</h5>
     <h3>{suggestion.description}</h3>
-    <h3>Rating: {suggestion.rating}</h3>
+    <StarRating rating={suggestion.rating}/>
     </div>
     </div>
   )

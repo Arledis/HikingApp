@@ -39,8 +39,9 @@
 
 #admin-form h1 {
   font-size: 1.3rem;
-  margin-top: -2vw;
+  margin-top: -1vw;
   margin-bottom: 0vw;
+  font-weight: bold;
 }
 
 #admin-form h2 {
@@ -67,7 +68,8 @@
   width: 70%;
   line-height: 1.5;
   border-radius: 8px;
-  height: 6vw;
+  height: auto;
+  text-align: center;
 }
 
 #admin-form select {
@@ -77,13 +79,14 @@
 #admin-form button {
   padding: 1vw;
   background-color: green;
-  width: 30%;
+  width: 40%;
   color: white;
   border-radius: 12px;
   margin-bottom: 1vw;
   border: none;
+  font-size: 1.2rem;
 }
 
 #admin-form button:hover {
-  background-color: #ff8000;
+  background-color: blue;
 }

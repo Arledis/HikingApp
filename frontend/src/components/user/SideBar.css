@@ -20,11 +20,6 @@
 }
 
 #sidebar-nav {
-  display: flex;
-  justify-content: space-around;
-}
-
-#sidebar-nav {
   justify-content: space-between;
   display: flex;
 }

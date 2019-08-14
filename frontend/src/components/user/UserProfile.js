@@ -32,8 +32,12 @@ const UserProfile = ({user, locations}) => {
         <h2>Welome back {getUserName()}!</h2>
           <ProgressBar progress={getDistanceWalked()} total={864.00} />
         </div>
-      <h2>Have a look to this suggestions!</h2>
+        <hr/>
+        <div id="view-suggestions">
+      <h2 id="suggest-text">Why not visit these locations on your next trip?</h2>
+
       {getLocations()}
+      </div>
     </div>
   )
 }
